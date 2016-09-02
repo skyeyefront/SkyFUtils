@@ -1,0 +1,143 @@
+<div :id="style.NoticeDoc">
+    <div class="page-header">
+        <h1>神奇的HTML5桌面通知
+            <small>
+                <label-browser></label-browser>
+            </small>
+        </h1>
+    </div>
+    <section>
+        <button class="btn btn-success btn-lg"
+                @click="noticeTest">
+            点我试试
+            <template v-if="noticeTestCounts">
+                <span class="badge">点击了: {{ noticeTestCounts }}次</span>
+            </template>
+        </button>
+    </section>
+    <!--如何使用-->
+    <h3>如何使用</h3>
+    <!--第一步-->
+    <h4>第一步: 创建实例</h4>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">全局安装</h3>
+        </div>
+        <div class="panel-body">
+            <highlight-code :code-text="codes1"></highlight-code>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">本地安装</h3>
+        </div>
+        <div class="panel-body">
+            <highlight-code :code-text="codes2"></highlight-code>
+        </div>
+    </div>
+    <!--第二步-->
+    <h4>第二步: 设置全局选项
+        <label-custom>可选</label-custom>
+    </h4>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <highlight-code :code-text="codes3"></highlight-code>
+        </div>
+    </div>
+    <!--第三步-->
+    <h4>第三步: 设置全局事件
+        <label-custom>可选</label-custom>
+    </h4>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <highlight-code :code-text="codes4"></highlight-code>
+        </div>
+    </div>
+    <!--第四步-->
+    <h4>第四步: Show</h4>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <highlight-code :code-text="codes5"></highlight-code>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">完整代码</h3>
+        </div>
+        <div class="panel-body">
+            <highlight-code :code-text="codes1.concat(codes3, codes4, codes5)"></highlight-code>
+            <button class="btn btn-sm btn-info" @click="noticeRun1">Run it.</button>
+        </div>
+    </div>
+    <!--选项-->
+    <h3>选项</h3>
+    <div class="list-group">
+        <div class="list-group-item" v-for="item in optionsList">
+            <h4 class="list-group-item-heading">
+                {{ item.name }}
+                <code>{{ item.type }}</code>
+            </h4>
+            <div class="list-group-item-text">
+                <p>{{{ item.means }}}</p>
+                <template v-if="item.hasOwnProperty('default')">
+                    <label-custom type="default">默认值</label-custom>
+                    <code>{{ item.default | json }}</code>
+                </template>
+                <template v-if="item.hasOwnProperty('choice')">
+                    <label-custom type="primary">值选项</label-custom>
+                    <code>{{ item.choice | json }}</code>
+                </template>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">通过 <code>setOptions</code> 进行全局设置</h3>
+        </div>
+        <div class="panel-body">
+            <highlight-code :code-text="codes6"></highlight-code>
+            <button class="btn btn-sm btn-info" @click="noticeRun2">Run it.</button>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">通过 <code>show</code> 进行一次性设置</h3>
+        </div>
+        <div class="panel-body">
+            <highlight-code :code-text="codes7"></highlight-code>
+            <button class="btn btn-sm btn-info" @click="noticeRun3">Run it.</button>
+        </div>
+    </div>
+    <!--事件-->
+    <h3>事件</h3>
+    <p>
+        <label-custom type="default">参数</label-custom>
+        <code>Event</code>对象
+    </p>
+    <div class="list-group">
+        <div class="list-group-item" v-for="item in eventsList">
+            <h4 class="list-group-item-heading">
+                <code>{{ item.name }}</code>
+                {{ item.means }}
+            </h4>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">通过 <code>setEvents</code> 进行全局设置</h3>
+        </div>
+        <div class="panel-body">
+            <highlight-code :code-text="codes8"></highlight-code>
+            <button class="btn btn-sm btn-info" @click="noticeRun4">Run it.</button>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">通过 <code>show</code> 进行一次性设置</h3>
+        </div>
+        <div class="panel-body">
+            <highlight-code :code-text="codes9"></highlight-code>
+            <button class="btn btn-sm btn-info" @click="noticeRun5">Run it.</button>
+        </div>
+    </div>
+</div>
