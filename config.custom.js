@@ -37,13 +37,13 @@ var config = {
   // 请注意引入的顺序, 尤其是针对有依赖的
   externals: [ {
     package: 'jquery',
-    var: '$',
+    var: 'window.$',
     path: '/node_modules/jquery/dist/jquery.min.js',
     chunk: [ 'index' ],
     CDN: false
   }, {
     package: 'bootstrap',
-    var: '$',
+    var: 'window.$',
     path: '/node_modules/bootstrap/dist/js/bootstrap.min.js',
     chunk: [ 'index' ],
     CDN: false
@@ -76,7 +76,7 @@ var config = {
   // 当为数组时 `path`的设置参考http://expressjs.com/en/4x/api.html#app.use, `config`的设置参考https://www.npmjs.com/package/http-proxy-middleware
   devServer: {
     host: '127.0.0.1',
-    port: 3000
+    port: 3003
   }
 }
 module.exports = config
