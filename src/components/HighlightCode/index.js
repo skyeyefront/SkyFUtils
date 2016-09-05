@@ -14,6 +14,7 @@ export default {
     codeText: {
       type: Array,
       default: function () {
+        // let example = [ 'var a = 123', 'a = a + 1' ]
         return []
       }
     }
@@ -28,5 +29,5 @@ export default {
       hljs.highlightBlock(block)
     })
   },
-  template: ' <pre><code class="{{ codeType }}">{{ codeTextStr }}</code></pre>'
+  template: '<pre><code class="{{ codeType }}">{{ codeTextStr }}</code></pre>'
 }

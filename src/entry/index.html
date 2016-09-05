@@ -1,28 +1,31 @@
-<div class="container-fluid">
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">SkyFUtils</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li v-for="item in urlRouters" v-bind:class="{active: urlActiveRouter === item}">
-                        <a href="{{ item.uri | router }}">{{ item.text }}</a>
-                    </li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
-    <main style="margin-top: 60px;" class="container">
-        <component :is="urlActiveRouter && urlActiveRouter.component.name"></component>
-    </main>
-</div>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">SkyFUtils</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li v-for="item in urlRouters" v-bind:class="{active: urlActiveRouter === item}">
+                    <a href="{{ item.uri | router }}">{{ item.text }}</a>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<main :id="style.AppMain" class="container">
+    <component :is="urlActiveRouter && urlActiveRouter.component.name"></component>
+</main>
+<button class="btn btn-sm btn-default align-right" :id="style.BtnBackTop"
+        @click="backTop">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+    <br>Top
+</button>

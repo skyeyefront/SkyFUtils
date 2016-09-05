@@ -1,3 +1,26 @@
-<div :id="style.AppDemo">
-    Lib Demo :)
+<div :id="style.FunctionsDoc">
+    <div class="rows">
+        <div class="col-md-10">
+            <template v-for="c in comps">
+                <component :is="c.component" v-show="moduleShow(c)"></component>
+            </template>
+        </div>
+        <div class="col-md-2" style="position: fixed; right: 0">
+            <h4>函数</h4>
+            <slide-nav :list="comps"></slide-nav>
+            <h4>标签</h4>
+            <div class="btn-group-vertical">
+                <button type="button" class="btn btn-default align-left"
+                        v-for="(key, value) in labelsDict">
+                    <input type="checkbox" v-model="checkedLabels" value="{{ key }}">
+                    <label-browser v-if="key === 'browser'"></label-browser>
+                    <label-node v-if="key === 'node'"></label-node>
+                    <label-custom v-if="['browser', 'node'].indexOf(key) === -1"
+                                  v-bind:style="{background: randomColor()}">
+                        {{ key }}
+                    </label-custom>
+                </button>
+            </div>
+        </div>
+    </div>
 </div>

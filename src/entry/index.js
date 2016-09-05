@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css'
-import './index.less'
 import Vue from 'vue'
 import page from 'page'
+import style from './index.less'
 import template from './index.html'
 import store from '../vuex/index'
 import {routerGo} from '../vuex/actions'
@@ -11,8 +11,6 @@ import SkyFUtils from '../libenv/index'
 import config from '../commons/config'
 // 安装过滤器
 Vue.use(filter)
-// 本地安装
-Vue.prototype.SkyFUtils = SkyFUtils.install({ debug: config.debug, globalInstall: false })
 // 全局安装
 SkyFUtils.install({ debug: config.debug })
 // 动态组件
@@ -34,9 +32,19 @@ let App = {
       urlActiveRouter
     }
   },
+  data () {
+    return {
+      style
+    }
+  },
   computed: {
     activeRouter: function () {
       return this.apps.active.uri
+    }
+  },
+  methods: {
+    backTop () {
+      window.$('body').animate({ 'scrollTop': 0 }, 300)
     }
   },
   created () {

@@ -1,0 +1,20 @@
+<div :id="style.strBordered">
+    <div class="page-header">
+        <h1>StrBordered
+            <small>
+                <label-browser></label-browser>
+                <label-node></label-node>
+            </small>
+        </h1>
+    </div>
+    <code-panel :code-text="codes"
+                :run-button="true" @run-code="runIt">
+        <div slot="code-after" class="well">
+            <div class="input-group">
+                <div class="input-group-addon">str</div>
+                <input class="form-control" type="text" placeholder="输入str的值"
+                       v-model="str">
+            </div>
+        </div>
+    </code-panel>
+</div>

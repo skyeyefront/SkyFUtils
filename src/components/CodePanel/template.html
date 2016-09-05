@@ -1,0 +1,18 @@
+<div class="panel panel-default">
+    <div class="panel-heading" v-if="title">
+        <h3 class="panel-title">
+            <slot name="title"></slot>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <slot name="code-before"></slot>
+        <highlight-code :code-text="codeText"></highlight-code>
+        <slot name="code-after"></slot>
+        <button class="btn btn-sm btn-info"
+                @click="runCode"
+                v-if="runButton">
+            Run it.
+        </button>
+        <slot name="content-append"></slot>
+    </div>
+</div>

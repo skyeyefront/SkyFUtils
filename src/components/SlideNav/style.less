@@ -1,0 +1,32 @@
+@activeBorderWidth: 2px;
+@horverBorderWidth: 1px;
+
+.nav-pills a {
+  color: #222 !important;
+  background: none !important;
+  border-color: #337ab7;
+  border-style: solid;
+  border-width: 0;
+  border-radius: 0 !important;
+  padding: 3px 15px !important;
+}
+
+.nav-pills li:hover a {
+  border-right-width: @horverBorderWidth;
+}
+
+.nav-pills-left li:hover a {
+  border-left-width: @horverBorderWidth;
+  border-right-width: 0;
+}
+
+.nav-pills :global(li.active) a {
+  border-right-width: @activeBorderWidth;
+}
+
+.nav-pills-left :global(li.active) a {
+  border-left-width: @activeBorderWidth;
+  border-right-width: 0;
+}
+
+

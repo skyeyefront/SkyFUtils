@@ -3,8 +3,14 @@
  */
 import style from './style.less'
 import template from './template.html'
-import HighlightCode from '../../components/HighlightCode'
+import {
+  codes1, codes2, codes3,
+  codes4, codes5, codes6,
+  codes7, codes8, codes9
+} from './codes'
+import CodePanel from '../../components/CodePanel'
 import {LabelBrowser, LabelCustom} from '../../components/Label'
+import OptionsList from '../../components/OptionsList'
 
 export default{
   template,
@@ -50,95 +56,25 @@ export default{
       } ],
       eventsList: [ {
         name: 'onclick',
+        type: 'Function',
         means: '点击事件回调'
       }, {
         name: 'onerror',
+        type: 'Function',
         means: '错误事件回调'
       }, {
         name: 'onclose',
+        type: 'Function',
         means: '关闭事件回调'
       }, {
         name: 'onshow',
+        type: 'Function',
         means: '显示事件回调'
       } ],
       /* codes */
-      // 全局安装
-      codes1: [
-        'var notice = new window.SkyEyeNotice()'
-      ],
-      // 本地安装
-      codes2: [
-        '// lib 为本地安装时的变量',
-        'var lib = SkyFUtils.install({globalInstall: false })',
-        'var notice = new lib.SkyEyeNotice()'
-      ],
-      codes3: [
-        'notice.setOptions({...})'
-      ],
-      codes4: [
-        'notice.setEvents({...})'
-      ],
-      codes5: [
-        'notice.show("这里写Title", {body: "Hi, 这里写消息主体文本"})'
-      ],
-      codes6: [
-        'notice.setOptions({',
-        '  dir: "auto"',
-        '  lang: "UTF-8"',
-        '  body: "这里是正文 2"',
-        '  tag: "tag-1"',
-        '  icon: "http://10.16.66.42:5011/favicon.png"',
-        '  data: {name: "skyeye"}',
-        '  renotify: true',
-        '})',
-        'notice.show("这里写Title 2")'
-      ],
-      codes7: [
-        'notice.show("这里写Title 3", {',
-        '  dir: "auto"',
-        '  lang: "UTF-8"',
-        '  body: "这里是正文 3"',
-        '  tag: "tag-2"',
-        '  icon: "/assets/images/favicon.png"',
-        '  data: {name: "hi, skyeye"}',
-        '  renotify: true',
-        '})'
-      ],
-      codes8: [
-        'notice',
-        '  .setEvents({',
-        '    onclick: function (...args) {',
-        '      console.log("Notice onClick", ...args)',
-        '    },',
-        '    onclose: function (...args) {',
-        '       console.log("Notice onClose", ...args)',
-        '    },',
-        '    onerror: function (...args) {',
-        '       console.log("Notice onError", ...args)',
-        '    },',
-        '    onshow: function (...args) {',
-        '       console.log("Notice onShow", ...args)',
-        '    }',
-        '  })',
-        '  .show("这里写Title 4", {body: "这里是正文 4"})'
-      ],
-      codes9: [
-        'notice',
-        '  .show("这里写Title 5", {body: "这里是正文 5"}, {',
-        '    onclick: function (...args) {',
-        '      console.log("Notice onClick", ...args)',
-        '    },',
-        '    onclose: function (...args) {',
-        '       console.log("Notice onClose", ...args)',
-        '    },',
-        '    onerror: function (...args) {',
-        '       console.log("Notice onError", ...args)',
-        '    },',
-        '    onshow: function (...args) {',
-        '       console.log("Notice onShow", ...args)',
-        '    }',
-        '  })'
-      ]
+      codes1, codes2, codes3,
+      codes4, codes5, codes6,
+      codes7, codes8, codes9
     }
   },
   methods: {
@@ -209,9 +145,10 @@ export default{
     }
   },
   components: {
-    HighlightCode,
+    CodePanel,
     LabelBrowser,
-    LabelCustom
+    LabelCustom,
+    OptionsList
   },
   ready () {
     this.notice

@@ -1,0 +1,78 @@
+<div :id="style.random">
+    <div class="page-header">
+        <h1>Random
+            <small>
+                <label-browser></label-browser>
+                <label-node></label-node>
+            </small>
+        </h1>
+    </div>
+    <!--随机Rgba颜色-->
+    <code-panel :title="true" :code-text="rgbaCodes"
+                :run-button="true" @run-code="runRgba">
+        <template slot="title">
+            随机Rgba颜色 <code>rgba(a)</code>
+        </template>
+        <div slot="code-after" class="well">
+            <div class="form-inline">
+                <div class="input-group">
+                    <div class="input-group-addon">a</div>
+                    <input class="form-control" type="text" placeholder="输入a的值"
+                           v-model="rgbaArgs.a">
+                </div>
+            </div>
+            <label class="label" v-bind:style="{background: rgbaValue}">
+                结果: {{ rgbaValue }}
+            </label>
+        </div>
+        <div slot="content-append">
+            <h4>参数</h4>
+            <options-list :list="rgbaOptions"></options-list>
+        </div>
+    </code-panel>
+    <!--随机整数-->
+    <code-panel :title="true" :code-text="intCodes"
+                :run-button="true" @run-code="runInt">
+        <template slot="title">
+            随机整数 <code>int(num)</code>
+        </template>
+        <div slot="code-after" class="well">
+            <div class="form-inline">
+                <div class="input-group">
+                    <div class="input-group-addon">num</div>
+                    <input class="form-control" type="text" placeholder="输入num的值"
+                           v-model="intArgs.num">
+                </div>
+            </div>
+        </div>
+        <div slot="content-append">
+            <h4>参数</h4>
+            <options-list :list="intOptions"></options-list>
+        </div>
+    </code-panel>
+    <!--随机ID-->
+    <code-panel :title="true" :code-text="idCodes"
+                :run-button="true" @run-code="runId">
+        <template slot="title">
+            随机ID <code>id(prefix, pow)</code>
+        </template>
+        <div slot="code-after" class="well">
+            <div class="form-inline">
+                <div class="input-group">
+                    <div class="input-group-addon">prefix</div>
+                    <input class="form-control" type="text" placeholder="输入prefix的值"
+                           v-model="idArgs.prefix">
+                </div>
+                <div class="input-group">
+                    <div class="input-group-addon">pow</div>
+                    <input class="form-control" type="text" placeholder="输入pow的值"
+                           v-model="idArgs.pow">
+                </div>
+            </div>
+        </div>
+        <div slot="content-append">
+            <h4>选项</h4>
+            <options-list :list="idOptions"></options-list>
+        </div>
+    </code-panel>
+</div>

@@ -1,0 +1,31 @@
+<div class="list-group">
+    <div class="list-group-item" v-for="item in list">
+        <h4 class="list-group-item-heading">
+            {{ item.name }}
+            <code>{{ item.type }}</code>
+            <label class="label label-danger"
+                   v-if="item.required">
+                {{ 必填 }}
+            </label>
+        </h4>
+        <div class="list-group-item-text">
+            <p>{{{ item.means }}}</p>
+            <template v-if="item.hasOwnProperty('default')">
+                <label-custom type="default">默认值</label-custom>
+                <code>{{ item.default | json }}</code>
+            </template>
+            <template v-if="item.hasOwnProperty('choice')">
+                <label-custom type="primary">值选项</label-custom>
+                <code>{{ item.choice | json }}</code>
+            </template>
+            <template v-if="item.hasOwnProperty('min')">
+                <label-custom type="warning">最小值</label-custom>
+                <code>{{ item.min | json }}</code>
+            </template>
+            <template v-if="item.hasOwnProperty('max')">
+                <label-custom type="warning">最大值</label-custom>
+                <code>{{ item.max | json }}</code>
+            </template>
+        </div>
+    </div>
+</div>

@@ -3,25 +3,29 @@
  */
 import ENV from './env'
 
+let prefix = function () {
+  return '[' + ENV.name + ', global=' + ENV.globalInstall + ']'
+}
+
 export default {
   log: function (...args) {
     if (ENV.debug) {
-      console.log('[' + ENV.name + ']', ...args)
+      console.log(prefix(), ...args)
     }
   },
   info: function (...args) {
     if (ENV.debug) {
-      console.info('[' + ENV.name + ']', ...args)
+      console.info(prefix(), ...args)
     }
   },
   warn: function (...args) {
     if (ENV.debug) {
-      console.warn('[' + ENV.name + ']', ...args)
+      console.warn(prefix(), ...args)
     }
   },
   error: function (...args) {
     if (ENV.debug) {
-      console.error('[' + ENV.name + ']', ...args)
+      console.error(prefix(), ...args)
     }
   }
 }
