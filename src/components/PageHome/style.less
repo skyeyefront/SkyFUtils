@@ -3,21 +3,45 @@
   height: 100%;
   min-height: 720px;
   position: relative;
+  background: url(../../../assets/images/header.jpg);
+  background-size: cover;
+  background-position: center;
   .inner {
     height: 640px;
     width: 100%;
     position: absolute;
     top: 50%;
-    margin-top: -340px;
+    margin-top: -260px;
     left: 0;
-    background: red;
+    color: rgba(255, 255, 255, 1);
+    h1 {
+      font-size: 50px;
+    }
+    hr {
+      border-color: #F05F40;
+      border-width: 3px;
+      max-width: 50px;
+      margin: 30px auto;
+    }
+    button {
+      background: transparent;
+      color: #FFF;
+      border-width: 2px;
+      &.btn-install {
+        margin-right: 10px;
+      }
+    }
   }
-  .logo {
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    top: 50%;
-    margin: -50px auto;
-    background: yellow;
-  }
+}
+
+#getStart {
+  height: 300px;
+}
+
+#download {
+  height: 300px;
+}
+
+#contact {
+  height: 300px;
 }

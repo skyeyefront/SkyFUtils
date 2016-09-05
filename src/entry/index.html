@@ -1,6 +1,6 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav :id="style.AppNav"
+     class="navbar navbar-default navbar-fixed-top {{ isHome && !overBottom ? style['at-home'] : '' }}">
     <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -11,21 +11,26 @@
             </button>
             <a class="navbar-brand" href="/">SkyFUtils</a>
         </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li v-for="item in urlRouters" v-bind:class="{active: urlActiveRouter === item}">
                     <a href="{{ item.uri | router }}">{{ item.text }}</a>
                 </li>
             </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+        </div>
+    </div>
 </nav>
-<main :id="style.AppMain" class="container">
+<main :id="style.AppMain" class="container animated {{ isHome ? style['at-home'] : '' }}" transition="bounceUD"
+      namespace="AppMain"
+      v-show="domReady && urlActiveRouter">
     <component :is="urlActiveRouter && urlActiveRouter.component.name"></component>
 </main>
-<button class="btn btn-sm btn-default align-right" :id="style.BtnBackTop"
-        @click="backTop">
+<button class="btn btn-sm btn-default align-right animated {{ isHome && !overBottom ? style['at-home'] : '' }}"
+        :id="style.BtnBackTop"
+        @click="backTop"
+        transition="zoomUD"
+        namespace="BtnBackTop"
+        v-show="domReady && scrollTop > 0">
     <span class="glyphicon glyphicon-chevron-up"></span>
     <br>Top
 </button>

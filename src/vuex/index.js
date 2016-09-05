@@ -7,10 +7,12 @@ import createLogger from 'vuex/logger'
 import * as types from './mutations'
 import utils from './utils'
 import config from '../commons/config'
+import packageJson from '../libenv/package.json'
 
 Vue.use(Vuex)
 
 const state = {
+  packageJson,
   // URL
   url: {
     base: '/page',
