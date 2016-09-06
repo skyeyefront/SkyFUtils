@@ -8,6 +8,8 @@ import {LabelBrowser, LabelNode, LabelCustom} from '../../components/Label'
 import Banner from './Banner'
 import Random from './Random'
 import StrBordered from './StrBordered'
+import FileReader from './FileReader'
+import LocalStorage from './LocalStorage'
 
 export default{
   template,
@@ -29,7 +31,17 @@ export default{
         text: 'StrBordered',
         component: 'StrBordered',
         labels: StrBordered.labels
-      } ],
+      }, {
+        target: FileReader.domId,
+        text: 'FileReader',
+        component: 'FileReader',
+        labels: FileReader.labels
+      }, {
+        target: LocalStorage.domId,
+        text: 'LocalStorage',
+        component: 'LocalStorage',
+        labels: LocalStorage.labels
+      }],
       checkedLabels: []
     }
   },
@@ -50,6 +62,8 @@ export default{
     Banner,
     Random,
     StrBordered,
+    FileReader,
+    LocalStorage,
     LabelBrowser, LabelNode, LabelCustom
   },
   methods: {

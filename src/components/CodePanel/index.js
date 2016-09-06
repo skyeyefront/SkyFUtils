@@ -17,6 +17,10 @@ export default {
         return []
       }
     },
+    imgSrc: {
+      type: String,
+      default: ''
+    },
     title: {
       type: Boolean,
       default: false
