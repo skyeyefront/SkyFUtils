@@ -25,21 +25,29 @@ body {
   right: 45px;
   &.at-home {
     background: transparent;
-    color: rgba(255, 255, 255, 1);
+    color: #fff;
   }
 }
 
 #AppNav {
+  font-weight: bolder;
+  a {
+    color: #222;
+  }
   &.at-home {
     background: transparent;
     a {
-      color: rgba(255, 255, 255, 1);
+      color: #fff;
     }
     :global(li.active) {
       a {
-        color: rgba(0, 0, 0, 1);
+        color: #000;
       }
     }
+  }
+  :global(.navbar-brand) {
+    color: #ee5f40;
+    font-family: cursive;
   }
 }
 
@@ -49,5 +57,15 @@ body {
     height: 100%;
     width: 100%;
     padding: 0;
+  }
+}
+
+#AppFooter {
+  background: #222;
+  .logo {
+    width: 155px;
+    height: 33px;
+    background: url(../../assets/images/skyeye-logo-small.png);
+    margin: 0 auto;
   }
 }

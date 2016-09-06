@@ -1,25 +1,65 @@
 <div :id="style.hero">
     <div class="{{ style.inner }}">
         <h1>SkyFUtils</h1>
-        <h3>Javascript 通用模块集合</h3>
+        <h3>可运行于Node或Browser的JavaScript通用模块类库</h3>
         <hr>
-        <button class="btn btn-lg btn-default {{ style['btn-install'] }}">
+        <button class="btn btn-lg btn-default {{ style['btn'] }} {{ style['btn-install'] }}"
+                @click="gotoInstall">
             安装 v{{ packageJson.version }}
         </button>
-        <button class="btn btn-lg btn-default">
+        <button class="btn btn-lg btn-default {{ style['btn'] }}"
+                @click="gotoGetStart">
             立刻上手
         </button>
     </div>
 </div>
 
 <div :id="style.getStart">
-
+    <h2>立刻上手</h2>
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <code-panel
+                        :title="true"
+                        :code-text="codesInBrowser">
+                    <template slot="title">
+                        <label-browser></label-browser>
+                        使用 <code>Install</code> 进行配置
+                    </template>
+                </code-panel>
+            </div>
+            <div class="col-md-4">
+                <code-panel
+                        :title="true"
+                        :code-text="codesInNode">
+                    <template slot="title">
+                        <label-node></label-node>
+                        使用 <code>Install</code> 进行配置
+                    </template>
+                </code-panel>
+            </div>
+            <div class="col-md-4">
+                <code-panel
+                        :title="true"
+                        :code-text="codesInRun"
+                        :run-button="true"
+                        @run-code="runCode">
+                    <template slot="title">
+                        运行代码
+                    </template>
+                </code-panel>
+            </div>
+        </div>
+    </div>
+    <div class="container align-center">
+        <a class="btn btn-lg btn-default {{ style['btn'] }}" href="{{ 'start' | router }}">
+            开始使用
+        </a>
+    </div>
 </div>
 
-<div :id="style.download">
-
-</div>
-
-<div :id="style.contact">
-
+<div :id="style.install">
+    <h2>安装 v{{ packageJson.version }}</h2>
+    <hr>
 </div>

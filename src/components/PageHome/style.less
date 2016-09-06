@@ -16,32 +16,54 @@
     color: rgba(255, 255, 255, 1);
     h1 {
       font-size: 50px;
+      font-family: cursive;
     }
     hr {
-      border-color: #F05F40;
+      border-color: #f05f40;
       border-width: 3px;
       max-width: 50px;
       margin: 30px auto;
     }
-    button {
+    .btn {
       background: transparent;
-      color: #FFF;
+      color: #fff;
       border-width: 2px;
-      &.btn-install {
-        margin-right: 10px;
-      }
+    }
+    .btn-install {
+      margin-right: 10px;
     }
   }
 }
 
-#getStart {
-  height: 300px;
+#getStart,
+#install {
+  position: relative;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  h2 {
+    margin-top: 0;
+    text-align: center;
+  }
+  hr {
+    border-color: #ee5f40;
+    border-width: 3px;
+    max-width: 50px;
+    margin: 30px auto;
+  }
+  .btn {
+    background: transparent;
+    color: #222;
+    border-width: 2px;
+  }
 }
 
-#download {
-  height: 300px;
-}
-
-#contact {
-  height: 300px;
+#install {
+  background: #ee5f40;
+  color: #fff;
+  hr {
+    border-color: #fff;
+  }
+  :global(.btn) {
+    color: #fff;
+  }
 }

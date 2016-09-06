@@ -31,6 +31,16 @@ const state = {
         }
       }
     }, {
+      uri: 'start',
+      text: '开始使用',
+      router: [ 'start' ],
+      component: {
+        name: 'InstallDoc',
+        module: function (cb) {
+          require([ 'APPS/InstallDoc/index' ], cb)
+        }
+      }
+    }, {
       uri: 'notice',
       text: '桌面通知',
       router: [ 'notice' ],

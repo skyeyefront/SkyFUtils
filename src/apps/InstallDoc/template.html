@@ -1,0 +1,41 @@
+<div :id="style.InstallDoc">
+    <div class="page-header">
+        <h1>开始使用</h1>
+    </div>
+    <!--安装-->
+    <h3>安装</h3>
+    <h4><code>SkyFUtils.install(envConfig)</code></h4>
+    <code-panel
+            :title="true"
+            :code-text="codesInBrowser">
+        <template slot="title">
+            <label-browser></label-browser>
+            使用 <code>Install</code> 进行配置
+        </template>
+    </code-panel>
+    <code-panel
+            :title="true"
+            :code-text="codesInNode">
+        <template slot="title">
+            <label-node></label-node>
+            使用 <code>Install</code> 进行配置
+        </template>
+    </code-panel>
+    <!--配置-->
+    <h3>配置</h3>
+    <!--envConfig-->
+    <h4>envConfig <code>Object</code></h4>
+    <options-list :list="envOptions"></options-list>
+    <code-panel
+            :title="true"
+            :code-text="codesComplete">
+        <template slot="title">
+            完整代码
+        </template>
+    </code-panel>
+    <!--modulesConfig-->
+    <template v-if="modulesOptions.length">
+        <h4>modulesConfig <code>Object</code></h4>
+        <options-list :list="modulesOptions"></options-list>
+    </template>
+</div>

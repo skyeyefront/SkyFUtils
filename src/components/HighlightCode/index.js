@@ -20,14 +20,25 @@ export default {
     }
   },
   computed: {
-    codeTextStr: function () {
+    codeTextStr () {
       return this.codeText.join('\n')
     }
   },
+  watch: {
+    codeTextStr () {
+      this.render()
+    }
+  },
+  methods: {
+    render () {
+      $(this.$el).children('code').each(function (i, block) {
+        $(block).html(this.codeTextStr)
+        hljs.highlightBlock(block)
+      }.bind(this))
+    }
+  },
   ready () {
-    $(this.$el).children('code').each(function (i, block) {
-      hljs.highlightBlock(block)
-    })
+    this.render()
   },
   template: '<pre><code class="{{ codeType }}">{{ codeTextStr }}</code></pre>'
 }

@@ -25,6 +25,9 @@
       v-show="domReady && urlActiveRouter">
     <component :is="urlActiveRouter && urlActiveRouter.component.name"></component>
 </main>
+<footer :id="style.AppFooter" v-show="!isHome && afterEnter">
+    <div class="{{ style.logo }}"></div>
+</footer>
 <button class="btn btn-sm btn-default align-right animated {{ isHome && !overBottom ? style['at-home'] : '' }}"
         :id="style.BtnBackTop"
         @click="backTop"

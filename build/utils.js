@@ -42,7 +42,7 @@ exports.banner = banner
  * @constructor
  */
 function SkyEyeDefinePlugin (env, defineVars) {
-  let v = {
+  var v = {
     'ENV': env,
     'PACKAGE_JSON': config.PACKAGE_JSON
   }
