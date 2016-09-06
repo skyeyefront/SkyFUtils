@@ -9,8 +9,10 @@ const baseSize = 7
 /**
  * 返回输入字符串对应的像素化字符
  * @param str 输入字符串
- * @param args {scale: 缩放倍数, wordSpace: 字符间距, notPrint: 是否不打印}
- * @returns {String}
+ * @param scale 缩放倍数
+ * @param wordSpace 字符间距
+ * @param notPrint {} 是否不打印
+ * @returns String
  */
 export default function (str, scale, wordSpace, notPrint) {
   if (str === '') str = 'skyeye'
@@ -23,7 +25,9 @@ export default function (str, scale, wordSpace, notPrint) {
   let _notPrint = false
   if (scale && parseInt(scale)) _scaleTimes = parseInt(scale)
   if (wordSpace && parseInt(wordSpace)) _wordSpace = parseInt(wordSpace)
-  if (notPrint !== undefined) _notPrint = notPrint
+  if (arguments.length > 1 && arguments[arguments.length - 1] && typeof arguments[arguments.length - 1] === 'object') {
+    _notPrint = arguments[arguments.length - 1].notPrint
+  }
 
   let wordSpaceStr = ''
   for (let i = 0; i < _wordSpace; i++) {
