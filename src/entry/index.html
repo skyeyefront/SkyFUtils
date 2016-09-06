@@ -1,5 +1,5 @@
 <nav :id="style.AppNav"
-     class="navbar navbar-default navbar-fixed-top {{ isHome && !overBottom ? style['at-home'] : '' }}">
+     class="navbar navbar-default navbar-fixed-top {{ isHome && !overBottom && afterEnter ? style['at-home'] : '' }}">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -12,7 +12,7 @@
             <a class="navbar-brand" href="/">SkyFUtils</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav navbar-right">
                 <li v-for="item in urlRouters" v-bind:class="{active: urlActiveRouter === item}">
                     <a href="{{ item.uri | router }}">{{ item.text }}</a>
                 </li>
@@ -20,7 +20,7 @@
         </div>
     </div>
 </nav>
-<main :id="style.AppMain" class="container animated {{ isHome ? style['at-home'] : '' }}" transition="bounceUD"
+<main :id="style.AppMain" class="container animated {{ isHome ? style['at-home'] : '' }}" transition="slideUD"
       namespace="AppMain"
       v-show="domReady && urlActiveRouter">
     <component :is="urlActiveRouter && urlActiveRouter.component.name"></component>

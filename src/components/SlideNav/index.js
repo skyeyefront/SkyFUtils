@@ -37,6 +37,11 @@ export default {
   },
   methods: {
     onClick (now) {
+      let $el = window.$('#' + now.target)
+      if ($el.length) {
+        let top = $el.offset().top
+        this.$bodyScrollTop(top)
+      }
       this.active = now
     }
   },

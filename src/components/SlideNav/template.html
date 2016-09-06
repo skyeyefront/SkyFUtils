@@ -1,7 +1,10 @@
 <ul class="nav nav-pills nav-pills-left nav-stacked" v-bind:class="classObj">
     <li role="presentation"
         v-bind:class="{active: active === li}"
-        v-for="li in list" @click="onClick(li)">
-        <a href="#{{ li.target }}">{{ li.text }}</a>
+        v-for="li in list">
+        <a href="#{{ li.target }}"
+           @click.stop.prevent="onClick(li)">
+            {{ li.text }}
+        </a>
     </li>
 </ul>

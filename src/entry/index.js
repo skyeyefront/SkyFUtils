@@ -7,13 +7,16 @@ import store from '../vuex/index'
 import {routerGo} from '../vuex/actions'
 import {url, urlRouters, urlActiveRouter, isHome} from '../vuex/getters'
 import filter from '../commons/filters'
+import dom from '../commons/dom'
 import transition from '../commons/transition'
 import SkyFUtils from '../libenv/index'
 import config from '../commons/config'
 // 安装过滤器
-Vue.use(filter)
+Vue.use(filter, { debug: config.debug })
+// 安装dom操作函数
+Vue.use(dom, { debug: config.debug, $: window.$ })
 // 安装动画
-Vue.use(transition)
+Vue.use(transition, { debug: config.debug })
 // 全局安装
 SkyFUtils.install({ debug: config.debug })
 // 动态组件
@@ -21,7 +24,7 @@ let components = {}
 urlRouters(store.state).concat(url(store.state).router404).forEach(function (item) {
   components[ item.component.name ] = item.component.module
 })
-
+// App
 let App = {
   template,
   components,
@@ -40,7 +43,8 @@ let App = {
     return {
       style,
       domReady: false,
-      scrollTop: 0
+      scrollTop: 0,
+      afterEnter: false
     }
   },
   computed: {
@@ -54,6 +58,13 @@ let App = {
   methods: {
     backTop () {
       window.$('body').animate({ 'scrollTop': 0 }, 300)
+    },
+    transitionAppMainBeforeEnter () {
+      this.scrollTop = 0
+      this.$windowScrollTop(this.scrollTop)
+    },
+    transitionAppMainAfterEnter () {
+      this.afterEnter = true
     }
   },
   created () {
@@ -63,13 +74,13 @@ let App = {
   },
   ready () {
     page.start()
-    window.$(window).scroll(function () {
-      this.scrollTop = window.$(window).scrollTop()
+    this.$addWindowScrollEventListener(function () {
+      this.scrollTop = this.$getWindowScrollTopValue()
     }.bind(this))
     this.domReady = true
   }
 }
-
+// run
 let run = function () {
   return new Vue({
     el: 'body',

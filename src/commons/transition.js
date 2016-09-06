@@ -40,10 +40,20 @@ let configs = [ {
   name: 'slide', types: [ [ 'U', 'Up' ], [ 'D', 'Down' ], [ 'L', 'Left' ], [ 'R', 'Right' ] ]
 }, {
   name: 'zoom', types: [ [ '', '' ], [ 'U', 'Up' ], [ 'D', 'Down' ], [ 'L', 'Left' ], [ 'R', 'Right' ] ]
+}, {
+  name: 'filp', types: [ [ 'X', 'X' ], [ 'Y', 'Y' ] ]
+}, {
+  name: 'lightSpeed', types: [ [ '', '' ] ]
+}, {
+  name: 'roll', types: [ [ '', '' ] ]
+}, {
+  name: 'rotate',
+  types: [ [ '', '' ], [ 'DL', 'DownLeft' ], [ 'DR', 'DownRight' ], [ 'UL', 'UpLeft' ], [ 'UR', 'UpRight' ] ]
 } ]
 
 export default {
-  install: function (Vue) {
+  install: function (Vue, {debug = false} = {}) {
+    let dict = {}
     configs.forEach((item) => {
       item.types.forEach((i) => {
         let [ik, iv] = i
@@ -52,9 +62,13 @@ export default {
           let name = item.name + ik + ok
           let inCss = item.name + 'In' + iv
           let outCss = item.name + 'Out' + ov
+          dict[ name ] = [ inCss, outCss ].toString()
           Vue.transition(name, _factory(inCss, outCss))
         })
       })
     })
+    if (debug) {
+      console.info('[commons/transition.js]安装成功', dict)
+    }
   }
 }

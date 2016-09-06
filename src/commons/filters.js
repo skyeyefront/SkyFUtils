@@ -15,7 +15,10 @@ export const router = function (uri) {
 }
 
 export default {
-  install: function (Vue) {
+  install: function (Vue, {debug = false} = {}) {
     Vue.filter('router', router)
+    if (debug) {
+      console.info('[commons/filters.js]安装成功')
+    }
   }
 }
