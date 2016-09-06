@@ -17,9 +17,9 @@ export default{
       style,
       str: window.SkyEyeBanner('skyeye', {notPrint: true}),
       params: {
-        inputStr: 'skyeye',
-        scale: 1,
-        wordSpace: 4
+        inputStr: '',
+        scale: '',
+        wordSpace: ''
       },
       paramsOptions: [
         {

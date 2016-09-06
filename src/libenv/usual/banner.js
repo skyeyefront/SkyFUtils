@@ -40,9 +40,11 @@ export default function (str, scale, wordSpace, notPrint) {
     result[ i ] = ''
   }
   inputArr.forEach(function (character) {
-    let charArr = scaledLetter(bannerDict[ character ], _scaleTimes)
-    for (let i = 0; i < charArr.length; i++) {
-      result[ i ] += wordSpaceStr + charArr[ i ]
+    if (bannerDict[ character ]) {
+      let charArr = scaledLetter(bannerDict[ character ], _scaleTimes)
+      for (let i = 0; i < charArr.length; i++) {
+        result[ i ] += wordSpaceStr + charArr[ i ]
+      }
     }
   })
 
