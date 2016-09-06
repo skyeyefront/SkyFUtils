@@ -57,11 +57,11 @@ let App = {
   },
   methods: {
     backTop () {
-      window.$('body').animate({ 'scrollTop': 0 }, 300)
+      this.$bodyScrollTop(this.scrollTop = 0)
     },
     transitionAppMainBeforeEnter () {
-      this.scrollTop = 0
-      this.$windowScrollTop(this.scrollTop)
+      this.afterEnter = false
+      this.$windowScrollTop(this.scrollTop = 0)
     },
     transitionAppMainAfterEnter () {
       this.afterEnter = true
