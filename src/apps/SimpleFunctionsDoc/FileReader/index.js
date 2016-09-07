@@ -9,7 +9,7 @@ import OptionsList from '../../../components/OptionsList'
 const textMaxLength = 1000
 export default{
   domId: style.fileRead,
-  labels: [ 'browser' ],
+  labels: [ 'browser', 'file' ],
   template,
   data () {
     return {

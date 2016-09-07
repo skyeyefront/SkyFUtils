@@ -35,7 +35,6 @@ class FileRead {
 
   read () {
     let self = this
-
     if (this.files instanceof FileList) {
       for (let i = 0; i < this.files.length; i++) {
         let file = this.files[ i ]

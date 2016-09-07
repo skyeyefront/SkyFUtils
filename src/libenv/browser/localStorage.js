@@ -21,5 +21,8 @@ export default {
     for (let key in window.localStorage) {
       delete window.localStorage[ key ]
     }
+  },
+  getAll () {
+    return window.localStorage
   }
 }

@@ -9,7 +9,7 @@ import OptionsList from '../../../components/OptionsList'
 
 export default{
   domId: style.localStorage,
-  labels: [ 'browser' ],
+  labels: [ 'browser', 'storage' ],
   template,
   data () {
     return {
@@ -100,7 +100,7 @@ export default{
       this.getStorage()
     },
     getStorage () {
-      let map = window.SkyEyeLocalStorage.getLocalStorage()
+      let map = window.SkyEyeLocalStorage.getAll()
       let localStorage = ''
       for (let key in map) {
         localStorage += key + '--' + map[ key ] + '\n'
