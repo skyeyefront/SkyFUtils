@@ -9,11 +9,13 @@
     <code-panel :title="true"
                 :code-text="functionCodes"
                 :run-button="true"
-                :img-src="imageURL"
                 @run-code="runIt">
         <template slot="title">
             读取不同类型文件 <code>new window.SkyEyeFileRead(File).readAs(fileType).read()</code>
         </template>
+        <div slot="code-after" class="{{ style['img-preview'] }}">
+            <img v-bind:src="readAllImgURL" v-show="readAllImgURL"/>
+        </div>
         <div slot="code-after" class="well">
             <div class="form-inline">
                 <div class="input-group">
@@ -52,16 +54,71 @@
     <code-panel :title="true"
                 :code-text="readImgCodes"
                 :run-button="true"
-                :img-src="readImageURL"
                 @run-code="runReadImg">
         <template slot="title">
             读取图片文件 <code>new window.SkyEyeFileRead(File).readAs('readAsDataURL').read()</code>
         </template>
+        <div slot="code-after" class="{{ style['img-preview'] }}">
+            <img v-bind:src="readImageURL" v-show="readImageURL"/>
+        </div>
         <div slot="code-after" class="well">
             <div class="form-inline">
                 <div class="input-group">
                     <div class="input-group-addon">file</div>
                     <input class="form-control" type="file" @change="getImgFileName">
+                </div>
+            </div>
+        </div>
+    </code-panel>
+    <!--filter-->
+    <h3>Filter 自定义过滤器</h3>
+    <code-panel :title="true"
+                :code-text="filterApiCodes">
+        <template slot="title">
+            Filter过滤器API
+        </template>
+    </code-panel>
+    <code-panel :title="true"
+                :code-text="filterCodes"
+                :run-button="true"
+                @run-code="runFilter">
+        <template slot="title">
+            图片过滤器示例
+        </template>
+        <div slot="code-after" class="{{ style['img-preview'] }}">
+            <img v-bind:src="filterImageURL" v-show="filterImageURL"/>
+        </div>
+        <div slot="code-after" class="well">
+            <div class="form-inline">
+                <div class="input-group">
+                    <div class="input-group-addon">file</div>
+                    <input class="form-control" type="file" @change="getFilterFileName">
+                </div>
+            </div>
+        </div>
+    </code-panel>
+    <!--event-->
+    <h3>事件</h3>
+    <div>
+        <h4>读取开始事件 <code>onReadStart</code></h4>
+        <h4>读取结束事件 <code>onReadEnd</code></h4>
+    </div>
+    <code-panel :title="true"
+                :code-text="readEventCodes"
+                :run-button="true"
+                @run-code="runReadEvent">
+        <template slot="title">
+            读取事件示例
+        </template>
+        <div slot="code-after" class="well">
+            <div class="form-inline">
+                <div class="input-group">
+                    <div class="input-group-addon">file</div>
+                    <input class="form-control" type="file" @change="getEventFileName">
+                    <div class="input-group-addon">file type</div>
+                    <select class="form-control" v-model="params.eventFileType">
+                        <option v-for="op in fileTypeOptions">{{op}}</option>
+                    </select>
                 </div>
             </div>
         </div>

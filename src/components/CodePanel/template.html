@@ -7,7 +7,6 @@
     <div class="panel-body">
         <slot name="code-before"></slot>
         <highlight-code :code-text="codeText"></highlight-code>
-        <img v-bind:src="imgSrc" style="width:200px;height:200px;" v-show="imgSrc"/>
         <slot name="code-after"></slot>
         <button class="btn btn-sm btn-info"
                 @click="runCode"
