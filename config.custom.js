@@ -16,11 +16,37 @@
  *    `(Array)externals`: [path1, path2, path3, ...]
  *    `(Array)webpack`: 请参照根目录的`webpack-assets.json`
  */
+var path = require('path')
+var libJson = require('./src/libenv/package.json')
+var libName = libJson.name.split('/').pop()
+var version = libJson.version
+var downloadsDir = path.resolve(__dirname, './server/downloads')
+// dist
+var distName = libName + '-' + version
+var distTarName = distName + '.tar.gz'
+var distTarDir = path.resolve(__dirname, './src/libenv/dist/**/*')
+
+// source
+var sourceName = libName + '-source-' + version
+var sourceTarName = sourceName + '.tar.gz'
+var sourceTarDir = path.resolve(__dirname, './src/libenv/**/*')
+
 var config = {
   esLint: true, // 是否开启js代码检验
   styleLint: true, // 是否开启样式代码检验
   styleHash: true, // 是否开启样式Hash(避免样式名称重复)
-  defineVars: null, // 通过DefinePlugin定义的变量, 用于在编译环境中使用, 通过process.SkyEye.defineVars进行访问
+  defineVars: {
+    libJson: libJson,
+    libName: libName,
+    version: version,
+    downloadsDir: downloadsDir,
+    distName: distName,
+    distTarName: distTarName,
+    distTarDir: distTarDir,
+    sourceName: sourceName,
+    sourceTarName: sourceTarName,
+    sourceTarDir: sourceTarDir
+  }, // 通过DefinePlugin定义的变量, 用于在编译环境中使用, 通过process.SkyEye.defineVars进行访问
   // 入口文件
   entryArray: [ {
     name: 'index',
@@ -76,7 +102,16 @@ var config = {
   // 当为数组时 `path`的设置参考http://expressjs.com/en/4x/api.html#app.use, `config`的设置参考https://www.npmjs.com/package/http-proxy-middleware
   devServer: {
     host: '127.0.0.1',
-    port: 3003
+    port: 3003,
+    proxy: [ {
+      path: /\/api/,
+      config: {
+        target: 'http://127.0.0.1:3000',
+        changeOrigin: true,
+        logLevel: 'debug',
+        ws: true
+      }
+    } ]
   }
 }
 module.exports = config

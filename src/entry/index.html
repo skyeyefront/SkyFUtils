@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">SkyFUtils</a>
+            <a class="navbar-brand" href="/">{{ config.name }}</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
@@ -25,9 +25,7 @@
       v-show="domReady && urlActiveRouter">
     <component :is="urlActiveRouter && urlActiveRouter.component.name"></component>
 </main>
-<footer :id="style.AppFooter" v-show="!isHome && afterEnter">
-    <div class="{{ style.logo }}"></div>
-</footer>
+<app-footer v-show="!isHome && afterEnter"></app-footer>
 <button class="btn btn-sm btn-default align-right animated {{ isHome && !overBottom ? style['at-home'] : '' }}"
         :id="style.BtnBackTop"
         @click="backTop"

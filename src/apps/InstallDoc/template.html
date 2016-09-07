@@ -4,6 +4,39 @@
     </div>
     <!--安装-->
     <h3>安装</h3>
+    <p>
+        {{ config.name }}（当前版本 v{{ packageJson.version }}）
+        提供以下几种方式帮你快速上手，每一种方式针对具有不同技能等级的开发者和不同的使用场景。
+        继续阅读下面的内容，看看哪种方式适合你的需求吧。
+    </p>
+    <div class="row">
+        <div class="col-md-4">
+            <h4>压缩文件</h4>
+            <p>编译并压缩后的JavaScript文件，不包含文档和源码文件。</p>
+            <a href="{{ config.minZipUrl }}" class="btn btn-lg btn-default">
+                下载压缩文件
+            </a>
+        </div>
+        <div class="col-md-4">
+            <h4>源代码</h4>
+            <p>ES6语法的JavaScript源文件, 需要Babel或者Webpack等进行编译。</p>
+            <a href="{{ config.codeZipUrl }}" class="btn btn-lg btn-default">
+                下载源代码
+            </a>
+        </div>
+        <div class="col-md-4">
+            <h4>通过NPM安装</h4>
+            <p>即包含编译并压缩后的JavaScript文件, 也包含文档和源码文件。</p>
+            <p>
+                <label class="label label-warning">注意:</label>
+                使用QNpm源<a target="_blank" href="{{ config.qNpmUrl }}">{{ config.qNpmUrl }}</a>
+            </p>
+            <p><code>npm install {{ config.qNpmName }}</code></p>
+            <p><code>cnpm install {{ config.qNpmName }}</code></p>
+        </div>
+    </div>
+    <!--配置-->
+    <h3>配置</h3>
     <h4><code>SkyFUtils.install(envConfig)</code></h4>
     <code-panel
             :title="true"
@@ -21,8 +54,8 @@
             使用 <code>Install</code> 进行配置
         </template>
     </code-panel>
-    <!--配置-->
-    <h3>配置</h3>
+    <!--参数-->
+    <h3>参数</h3>
     <!--envConfig-->
     <h4>envConfig <code>Object</code></h4>
     <options-list :list="envOptions"></options-list>

@@ -5,7 +5,9 @@ import style from './style.less'
 import template from './template.html'
 import CodePanel from '../../components/CodePanel'
 import {LabelBrowser, LabelNode} from '../../components/Label'
+import AppFooter from '../../components/AppFooter'
 import {packageJson} from '../../vuex/getters'
+import config from '../../commons/config'
 
 export default {
   template,
@@ -17,7 +19,7 @@ export default {
   data () {
     return {
       style,
-      $installEl: null,
+      config,
       $getStartEl: null,
       codesInBrowser: [
         '// 全局安装',
@@ -49,12 +51,6 @@ export default {
     }
   },
   methods: {
-    gotoInstall () {
-      if (this.$installEl) {
-        let top = this.$installEl.offset().top
-        this.$bodyScrollTop(top)
-      }
-    },
     gotoGetStart () {
       if (this.$getStartEl) {
         let top = this.$getStartEl.offset().top
@@ -66,14 +62,10 @@ export default {
     }
   },
   components: {
-    CodePanel, LabelBrowser, LabelNode
+    CodePanel, LabelBrowser, LabelNode, AppFooter
   },
   ready () {
-    this.$installEl = window.$('#' + style.install)
     this.$getStartEl = window.$('#' + style.getStart)
-    if (!this.$installEl.length) {
-      this.$installEl = null
-    }
     if (!this.$getStartEl.length) {
       this.$getStartEl = null
     }

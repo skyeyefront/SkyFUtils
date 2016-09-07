@@ -105,7 +105,7 @@ export default{
         lang: 'UTF-8',
         body: '这里是正文 3',
         tag: 'tag-2',
-        icon: '/assets/images/favicon.png',
+        icon: 'http://10.16.66.42:5011/skyeye.png',
         data: { name: 'hi, skyeye' },
         renotify: true
       }))
@@ -153,7 +153,7 @@ export default{
   ready () {
     this.notice
       .setOptions({
-        icon: '/assets/images/favicon.png'
+        icon: 'http://10.16.66.42:5011/skyeye.png'
       })
       .setEvents({
         onclick: function (...args) {

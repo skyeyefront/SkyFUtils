@@ -5,23 +5,6 @@
 * `cnpm install @qnpm/skyfutils --save-dev`
 * 或者使用`npm`进行安装
 
-## 使用
-
-#### ES6
-`import SkyFUtils from '@qnpm/skyfutils'`
-`...`
-`SkyFUtils.install(envConfig, modulesConfig)`
-
-#### CMD
-
-#### AMD
-
-
-#### Global
-
-
-## 模块列表
-
-#### 桌面通知`Notice`
-
-## Change Logs
+## 使用文档
+* http://10.16.66.9:5025/page/
+* http://10.16.66.42:5025/page/

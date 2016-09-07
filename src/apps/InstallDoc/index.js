@@ -6,12 +6,20 @@ import template from './template.html'
 import CodePanel from '../../components/CodePanel'
 import {LabelBrowser, LabelNode} from '../../components/Label'
 import OptionsList from '../../components/OptionsList'
+import {packageJson} from '../../vuex/getters'
+import config from '../../commons/config'
 
 export default {
   template,
+  vuex: {
+    getters: {
+      packageJson
+    }
+  },
   data () {
     return {
       style,
+      config,
       codesInBrowser: [
         '// 全局安装',
         'SkyFUtils.install()',

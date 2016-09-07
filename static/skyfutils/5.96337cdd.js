@@ -1,0 +1,2 @@
+webpackJsonp([5],{227:function(e,t,n){"use strict";function u(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(t,"__esModule",{value:!0});var o=n(228),a=u(o);t["default"]={template:a["default"]},e.exports=t["default"]},228:function(e,t){e.exports="<div class=container> <h2 style=text-align:center>404 Not Found</h2> </div>"}});
+//# sourceMappingURL=5.96337cdd.js.map

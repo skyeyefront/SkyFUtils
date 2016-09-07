@@ -62,8 +62,6 @@
                     <div class="input-group-addon">prefix</div>
                     <input class="form-control" type="text" placeholder="输入prefix的值"
                            v-model="idArgs.prefix">
-                </div>
-                <div class="input-group">
                     <div class="input-group-addon">pow</div>
                     <input class="form-control" type="text" placeholder="输入pow的值"
                            v-model="idArgs.pow">
@@ -71,7 +69,7 @@
             </div>
         </div>
         <div slot="content-append">
-            <h4>选项</h4>
+            <h4>参数</h4>
             <options-list :list="idOptions"></options-list>
         </div>
     </code-panel>

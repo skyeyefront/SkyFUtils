@@ -1,24 +1,102 @@
+// 依赖加载
 var setting = require('./setting')
 var config = require('../build/config')
 var utils = require('../build/utils')
 var customConfig = utils.mergeCustomConfig(require('../config.custom'))
-var gulpUtil = require('gulp-util')
 var express = require('express')
-var server = express()
-// service
-server.listen(setting.port, setting.host, function (err) {
-  if (err) {
-    throw new gulpUtil.PluginError('express', err)
+var http = require('http')
+var fs = require('fs')
+
+// 下载文件路径
+var downloadFiles = {
+  min: {
+    path: setting.downloads.path + '/' + customConfig.defineVars.distTarName
+  },
+  source: {
+    path: setting.downloads.path + '/' + customConfig.defineVars.sourceTarName
   }
-  gulpUtil.log(utils.strBordered('Server is running at http://' + setting.host + ':' + setting.port))
-})
+}
+
+// 判断运行环境
+var isProduction = process.env.NODE_ENV === 'production'
+var port = setting.port
+var host = setting.host
+if (isProduction) {
+  port = process.env.PORT
+  host = process.env.HOST
+}
+
+// app
+var app = express()
+
+// 创建日志目录
+fs.existsSync(setting.logs.path.absolute) || fs.mkdirSync(setting.logs.path.absolute)
+
+// 启用访问日志
+require('./access.js')(app)
+
 // 静态资源服务
-server.use(config.distPublicPath, express.static(config.distProAbsolutePath))
-server.set('views', config.templatesAbsolutePath)
-server.engine('html', require('ejs').renderFile)
+app.use(config.distPublicPath, express.static(config.distProAbsolutePath))
+app.set('views', config.templatesAbsolutePath)
+app.engine('html', require('ejs').renderFile)
+
 // Page Router
 customConfig.entryArray.forEach(function (item) {
-  server.get(item.router, function (req, res) {
+  app.get(item.router, function (req, res) {
     res.render(item.name + '.html')
   })
 })
+
+// Api download
+app.get('/api/download/:type', function (req, res) {
+  var type = req.params.type
+  var item = downloadFiles[ type ]
+  if (item) {
+    console.log(item.path)
+    if (fs.existsSync(item.path)) {
+      res.download(item.path)
+    } else {
+      res.status(400).json({ message: 'File Not Found' })
+    }
+  } else {
+    res.status(404).json({ message: 'URL Not Found' })
+  }
+})
+
+// server
+var server = http.createServer(app)
+server.listen(port, host)
+server.on('error', onError)
+server.on('listening', onListening)
+
+function onError (error) {
+  if (error.syscall !== 'listen') {
+    throw error
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges')
+      process.exit(1)
+      break
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use')
+      process.exit(1)
+      break
+    default:
+      throw error
+  }
+}
+
+function onListening () {
+  var addr = server.address()
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : addr.address + ':' + addr.port
+  console.log('Listening on ' + bind)
+}

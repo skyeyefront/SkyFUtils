@@ -11,6 +11,7 @@ import dom from '../commons/dom'
 import transition from '../commons/transition'
 import SkyFUtils from '../libenv/index'
 import config from '../commons/config'
+import AppFooter from '../components/AppFooter'
 // 安装过滤器
 Vue.use(filter, { debug: config.debug })
 // 安装dom操作函数
@@ -20,7 +21,9 @@ Vue.use(transition, { debug: config.debug })
 // 全局安装
 SkyFUtils.install({ debug: config.debug })
 // 动态组件
-let components = {}
+let components = {
+  AppFooter
+}
 urlRouters(store.state).concat(url(store.state).router404).forEach(function (item) {
   components[ item.component.name ] = item.component.module
 })
@@ -42,6 +45,7 @@ let App = {
   data () {
     return {
       style,
+      config,
       domReady: false,
       scrollTop: 0,
       afterEnter: false
