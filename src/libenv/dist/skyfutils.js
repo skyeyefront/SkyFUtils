@@ -1,9 +1,9 @@
 /*!
  * skyfutils
- * Version: 0.0.1
+ * Version: 0.0.4
  * Author: huangxin
  * Group: 360 SkyEye FrontEnd
- * Build Time: 2016-09-07 17:43:53
+ * Build Time: 2016-09-07 17:53:46
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
