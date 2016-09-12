@@ -15,23 +15,38 @@ import StrBordered from './usual/strBordered'
 export default {
   install: function (envConfig, modulesConfig) {
     if (install(envConfig, modulesConfig)) {
+      let envVar = null
       let components = {}
       if (ENV._isBrowser) {
         components[ getVarName('FileRead') ] = FileRead
         components[ getVarName('LocalStorage') ] = LocalStorage
         components[ getVarName('Notice') ] = Notice
+        try {
+          envVar = window
+        } catch (err) {
+          logs.error(err)
+          throw err
+        }
       }
       if (ENV._isNode) {
         // todo node
+        try {
+          envVar = global
+        } catch (err) {
+          logs.error(err)
+          throw err
+        }
       }
       components[ getVarName('Banner') ] = Banner
       components[ getVarName('Random') ] = Random
       components[ getVarName('StrBordered') ] = StrBordered
       logs.info('模块安装成功:', Object.keys(components))
       if (ENV.globalInstall) {
-        for (let k in components) {
-          if (components.hasOwnProperty(k)) {
-            ENV._envVar[ k ] = components[ k ]
+        if (envVar) {
+          for (let k in components) {
+            if (components.hasOwnProperty(k)) {
+              envVar[ k ] = components[ k ]
+            }
           }
         }
       } else {

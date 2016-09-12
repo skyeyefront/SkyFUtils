@@ -5,23 +5,31 @@ var ejs = require('ejs')
 var gulp = require('gulp')
 var gulpUglify = require('gulp-uglify')
 var gulpCleanCss = require('gulp-clean-css')
+var skyFUtils = require('@qnpm/skyfutils/dist/skyfutils.js').install({ env: 'node', globalInstall: false })
 
 /**
  * 启动Banner
  */
 function startBanner () {
-  var arr = [
-    '******   *     *  *         *  ******  *         *  ******',
-    '*        *   *      *     *    *         *     *    *',
-    '*        * *          * *      *           * *      *',
-    '******   *             *       ******       *       ******',
-    '     *   * *           *       *            *       *',
-    '     *   *   *         *       *            *       *',
-    '******   *     *       *       ******       *       ******'
-  ]
-  process.stdout.write('\n' + arr.join('\n') + '\n')
+  var str = skyFUtils.SkyEyeBanner(config.packageName, { notPrint: true, wordSpace: 2 })
+  process.stdout.write('\n' + str + '\nVersion:' + config.packageVersion)
 }
 exports.startBanner = startBanner
+
+/**
+ * 获取版本信息
+ * @returns {boolean}
+ */
+function getVersionInfo () {
+  return {
+    libVersion: config.libVersion,
+    packageVersion: config.packageVersion,
+    get isEq () {
+      return this.libVersion === this.packageVersion
+    }
+  }
+}
+exports.getVersionInfo = getVersionInfo
 
 /**
  * banner 信息

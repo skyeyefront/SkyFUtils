@@ -11,48 +11,48 @@ const baseSize = 7
  * @param str 输入字符串
  * @param scale 缩放倍数
  * @param wordSpace 字符间距
- * @param notPrint {} 是否不打印
+ * @param notPrint  是否不打印
  * @returns String
  */
-export default function (str, scale, wordSpace, notPrint) {
-  if (str === '') str = 'skyeye'
-  if (str === undefined || typeof str !== 'string') return 'error'
-
+export default function (str, {scale = 1, wordSpace = 4, notPrint = false} = {}) {
+  if ([ 'string', 'number' ].indexOf(typeof str) === -1) {
+    throw new Error('第一个参数`str`类型错误, 类型必须是string或number')
+  }
+  str = str || 'skyeye'
   str = str.toUpperCase()
-
-  let _wordSpace = 4
-  let _scaleTimes = 1
-  let _notPrint = false
-  if (scale && parseInt(scale)) _scaleTimes = parseInt(scale)
-  if (wordSpace && parseInt(wordSpace)) _wordSpace = parseInt(wordSpace)
-  if (arguments.length > 1 && arguments[arguments.length - 1] && typeof arguments[arguments.length - 1] === 'object') {
-    _notPrint = arguments[arguments.length - 1].notPrint
+  scale = +scale
+  wordSpace = +wordSpace
+  scale = isNaN(scale) ? 1 : scale || 1
+  wordSpace = isNaN(wordSpace) ? 4 : wordSpace
+  if (scale > 3) {
+    scale = 3
+  } else if (scale < 1) {
+    scale = 1
   }
-
-  let wordSpaceStr = ''
-  for (let i = 0; i < _wordSpace; i++) {
-    wordSpaceStr += ' '
+  if (wordSpace > 8) {
+    wordSpace = 8
+  } else if (wordSpace < 0) {
+    wordSpace = 0
   }
-
+  let wordSpaceStr = (' ').repeat(wordSpace)
   let inputArr = str.split('')
   let result = []
-  for (let i = 0; i < _scaleTimes * baseSize; i++) {
+  for (let i = 0; i < scale * baseSize; i++) {
     result[ i ] = ''
   }
   inputArr.forEach(function (character) {
     if (bannerDict[ character ]) {
-      let charArr = scaledLetter(bannerDict[ character ], _scaleTimes)
+      let charArr = scaledLetter(bannerDict[ character ], scale)
       for (let i = 0; i < charArr.length; i++) {
         result[ i ] += wordSpaceStr + charArr[ i ]
       }
     }
   })
-
-  if (_notPrint) {
-    return getJointStr(result)
+  str = getJointStr(result)
+  if (notPrint) {
+    return str
   }
-  console.log(getJointStr(result))
-  return getJointStr(result)
+  console.log(str)
 }
 
 /**

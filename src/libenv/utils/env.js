@@ -12,7 +12,6 @@ let config = {
   modulesConfig: {},
   _isBrowser: true,
   _isNode: false,
-  _envVar: window,
   _envChoices: [ 'browser', 'node' ]
 }
 

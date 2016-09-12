@@ -1,9 +1,9 @@
 /*!
  * skyfutils
- * Version: 0.0.4
+ * Version: 0.0.6
  * Author: huangxin
  * Group: 360 SkyEye FrontEnd
- * Build Time: 2016-09-07 17:53:46
+ * Build Time: 2016-09-12 16:04:20
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -61,7 +61,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -113,23 +113,38 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = {
 	  install: function install(envConfig, modulesConfig) {
 	    if ((0, _install3.default)(envConfig, modulesConfig)) {
+	      var envVar = null;
 	      var components = {};
 	      if (_env2.default._isBrowser) {
 	        components[(0, _commons.getVarName)('FileRead')] = _FileRead2.default;
 	        components[(0, _commons.getVarName)('LocalStorage')] = _localStorage2.default;
 	        components[(0, _commons.getVarName)('Notice')] = _Notice2.default;
+	        try {
+	          envVar = window;
+	        } catch (err) {
+	          _logs2.default.error(err);
+	          throw err;
+	        }
 	      }
 	      if (_env2.default._isNode) {
 	        // todo node
+	        try {
+	          envVar = global;
+	        } catch (err) {
+	          _logs2.default.error(err);
+	          throw err;
+	        }
 	      }
 	      components[(0, _commons.getVarName)('Banner')] = _banner2.default;
 	      components[(0, _commons.getVarName)('Random')] = _random2.default;
 	      components[(0, _commons.getVarName)('StrBordered')] = _strBordered2.default;
 	      _logs2.default.info('模块安装成功:', Object.keys(components));
 	      if (_env2.default.globalInstall) {
-	        for (var k in components) {
-	          if (components.hasOwnProperty(k)) {
-	            _env2.default._envVar[k] = components[k];
+	        if (envVar) {
+	          for (var k in components) {
+	            if (components.hasOwnProperty(k)) {
+	              envVar[k] = components[k];
+	            }
 	          }
 	        }
 	      } else {
@@ -139,6 +154,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	};
 	module.exports = exports['default'];
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
 /* 1 */
@@ -165,7 +181,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  modulesConfig: {},
 	  _isBrowser: true,
 	  _isNode: false,
-	  _envVar: window,
 	  _envChoices: ['browser', 'node']
 	}; /**
 	    * Created by huangxinxin on 16/8/23.
@@ -184,7 +199,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 		"license": "ISC",
 		"name": "@qnpm/skyfutils",
-		"version": "0.0.4",
+		"version": "0.0.6",
 		"description": "SkyFUtils 通用模块集合",
 		"keywords": [
 			"util",
@@ -293,7 +308,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -324,11 +339,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (_env2.default.env === 'browser') {
 	      _env2.default._isBrowser = true;
 	      _env2.default._isNode = false;
-	      _env2.default._envVar = window;
 	    } else if (_env2.default.env === 'node') {
 	      _env2.default._isBrowser = false;
 	      _env2.default._isNode = true;
-	      _env2.default._envVar = global;
 	    }
 	    _logs2.default.info('环境依赖安装成功', _env2.default);
 	    return true;
@@ -348,7 +361,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default']; /**
 	                                      * Created by huangxinxin on 16/8/23.
 	                                      */
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
 /* 5 */
@@ -709,45 +721,54 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                                                                                                                                                                                                                                   */
 
 
-	exports.default = function (str, scale, wordSpace, notPrint) {
-	  if (str === '') str = 'skyeye';
-	  if (str === undefined || typeof str !== 'string') return 'error';
+	exports.default = function (str) {
+	  var _ref = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
+	  var _ref$scale = _ref.scale;
+	  var scale = _ref$scale === undefined ? 1 : _ref$scale;
+	  var _ref$wordSpace = _ref.wordSpace;
+	  var wordSpace = _ref$wordSpace === undefined ? 4 : _ref$wordSpace;
+	  var _ref$notPrint = _ref.notPrint;
+	  var notPrint = _ref$notPrint === undefined ? false : _ref$notPrint;
+
+	  if (['string', 'number'].indexOf(typeof str === 'undefined' ? 'undefined' : _typeof(str)) === -1) {
+	    throw new Error('第一个参数`str`类型错误, 类型必须是string或number');
+	  }
+	  str = str || 'skyeye';
 	  str = str.toUpperCase();
-
-	  var _wordSpace = 4;
-	  var _scaleTimes = 1;
-	  var _notPrint = false;
-	  if (scale && parseInt(scale)) _scaleTimes = parseInt(scale);
-	  if (wordSpace && parseInt(wordSpace)) _wordSpace = parseInt(wordSpace);
-	  if (arguments.length > 1 && arguments[arguments.length - 1] && _typeof(arguments[arguments.length - 1]) === 'object') {
-	    _notPrint = arguments[arguments.length - 1].notPrint;
+	  scale = +scale;
+	  wordSpace = +wordSpace;
+	  scale = isNaN(scale) ? 1 : scale || 1;
+	  wordSpace = isNaN(wordSpace) ? 4 : wordSpace;
+	  if (scale > 3) {
+	    scale = 3;
+	  } else if (scale < 1) {
+	    scale = 1;
 	  }
-
-	  var wordSpaceStr = '';
-	  for (var i = 0; i < _wordSpace; i++) {
-	    wordSpaceStr += ' ';
+	  if (wordSpace > 8) {
+	    wordSpace = 8;
+	  } else if (wordSpace < 0) {
+	    wordSpace = 0;
 	  }
-
+	  var wordSpaceStr = ' '.repeat(wordSpace);
 	  var inputArr = str.split('');
 	  var result = [];
-	  for (var _i = 0; _i < _scaleTimes * baseSize; _i++) {
-	    result[_i] = '';
+	  for (var i = 0; i < scale * baseSize; i++) {
+	    result[i] = '';
 	  }
 	  inputArr.forEach(function (character) {
 	    if (_bannerDict2.default[character]) {
-	      var charArr = scaledLetter(_bannerDict2.default[character], _scaleTimes);
-	      for (var _i2 = 0; _i2 < charArr.length; _i2++) {
-	        result[_i2] += wordSpaceStr + charArr[_i2];
+	      var charArr = scaledLetter(_bannerDict2.default[character], scale);
+	      for (var _i = 0; _i < charArr.length; _i++) {
+	        result[_i] += wordSpaceStr + charArr[_i];
 	      }
 	    }
 	  });
-
-	  if (_notPrint) {
-	    return getJointStr(result);
+	  str = getJointStr(result);
+	  if (notPrint) {
+	    return str;
 	  }
-	  console.log(getJointStr(result));
-	  return getJointStr(result);
+	  console.log(str);
 	};
 
 	var _bannerDict = __webpack_require__(10);
@@ -764,7 +785,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param str 输入字符串
 	 * @param scale 缩放倍数
 	 * @param wordSpace 字符间距
-	 * @param notPrint {} 是否不打印
+	 * @param notPrint  是否不打印
 	 * @returns String
 	 */
 
@@ -789,13 +810,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  }
 	  var result = [];
-	  for (var _i3 = 0; _i3 < baseSize; _i3++) {
+	  for (var _i2 = 0; _i2 < baseSize; _i2++) {
 	    for (var _j = 0; _j < baseSize; _j++) {
-	      twoDimArrAfter[_i3 * scaleTimes][_j * scaleTimes] = twoDimArrBefore[_i3][_j];
+	      twoDimArrAfter[_i2 * scaleTimes][_j * scaleTimes] = twoDimArrBefore[_i2][_j];
 	    }
-	    result.push(twoDimArrAfter[_i3 * scaleTimes].join(''));
+	    result.push(twoDimArrAfter[_i2 * scaleTimes].join(''));
 	    for (var k = 1; k < scaleTimes; k++) {
-	      result.push(twoDimArrAfter[_i3 * scaleTimes + scaleTimes - k].join(''));
+	      result.push(twoDimArrAfter[_i2 * scaleTimes + scaleTimes - k].join(''));
 	    }
 	  }
 	  return result;

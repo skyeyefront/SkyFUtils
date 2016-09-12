@@ -17,11 +17,9 @@ export default function ({env = 'browser', debug = false, prefix = 'SkyEye', glo
     if (ENV.env === 'browser') {
       ENV._isBrowser = true
       ENV._isNode = false
-      ENV._envVar = window
     } else if (ENV.env === 'node') {
       ENV._isBrowser = false
       ENV._isNode = true
-      ENV._envVar = global
     }
     logs.info('环境依赖安装成功', ENV)
     return true

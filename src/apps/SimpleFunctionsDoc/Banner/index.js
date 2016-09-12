@@ -12,14 +12,13 @@ export default{
   labels: [ 'browser', 'node' ],
   template,
   data () {
-    console.log(window.SkyEyeBanner('skyeye', {notPrint: true}))
     return {
       style,
-      str: window.SkyEyeBanner('skyeye', {notPrint: true}),
+      str: '',
       params: {
         inputStr: '',
-        scale: '',
-        wordSpace: ''
+        scale: 1,
+        wordSpace: 1
       },
       paramsOptions: [
         {
@@ -53,18 +52,22 @@ export default{
       if (this.params.scale !== '') str += ',' + this.params.scale
       if (this.params.wordSpace !== '') str += ',' + this.params.wordSpace
       str += ')'
-      return [str, '结果如下:', this.str]
+      return [ str, '结果如下:', this.str ]
     }
   },
   methods: {
     runIt () {
-      this.str = window.SkyEyeBanner(this.params.inputStr, this.params.scale, this.params.wordSpace)
+      this.str = window.SkyEyeBanner(this.params.inputStr, {
+        scale: this.params.scale,
+        wordSpace: this.params.wordSpace,
+        notPrint: true
+      })
     }
   },
   components: {
     CodePanel, LabelBrowser, LabelNode, OptionsList
   },
   ready () {
-    window.SkyEyeBanner('skyeye')
+    this.runIt()
   }
 }

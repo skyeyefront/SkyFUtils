@@ -10,10 +10,10 @@ var fs = require('fs')
 // 下载文件路径
 var downloadFiles = {
   min: {
-    path: setting.downloads.path + '/' + customConfig.defineVars.distTarName
+    path: config.libNfsAbsolutePath + '/' + config.libDistTarName
   },
   source: {
-    path: setting.downloads.path + '/' + customConfig.defineVars.sourceTarName
+    path: config.libNfsAbsolutePath + '/' + config.libSourceTarName
   }
 }
 
