@@ -41,6 +41,19 @@ export default {
       str: '',
       changeList: [
         {
+          version: 'v0.0.7',
+          time: '2016-09-18',
+          changeItems: [
+            {
+              content: '[+] 新增正则表达式匹配功能',
+              type: 'add' // update | fix | add
+            }, {
+              content: '[+] 新增修改记录列表ChangeLog',
+              type: 'add' // update | fix | add
+            }
+          ]
+        },
+        {
           version: 'v0.0.6',
           time: '2016-09-13',
           changeItems: [
