@@ -11,6 +11,7 @@ import Notice from './browser/Notice'
 import Banner from './usual/banner'
 import Random from './usual/random'
 import StrBordered from './usual/strBordered'
+import RegExp from './usual/regExp'
 
 export default {
   install: function (envConfig, modulesConfig) {
@@ -40,6 +41,7 @@ export default {
       components[ getVarName('Banner') ] = Banner
       components[ getVarName('Random') ] = Random
       components[ getVarName('StrBordered') ] = StrBordered
+      components[ getVarName('RegExp') ] = RegExp
       logs.info('模块安装成功:', Object.keys(components))
       if (ENV.globalInstall) {
         if (envVar) {

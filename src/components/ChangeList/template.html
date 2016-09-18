@@ -1,0 +1,11 @@
+<div v-for="change in changeList">
+    <div class="{{style[ 'version' ]}}">{{change.version}}</div>
+    <div class="{{style[ 'time' ]}}">
+        {{change.time}}
+    </div>
+    <ul class="list-group">
+        <li v-for="item in change.changeItems" class="list-group-item" style="border-width:0; padding-left:0;">
+            {{item.content}}
+        </li>
+    </ul>
+</div>

@@ -7,6 +7,7 @@ import SlideNav from '../../components/SlideNav'
 import {LabelBrowser, LabelNode, LabelCustom} from '../../components/Label'
 import Banner from './Banner'
 import Random from './Random'
+import RegExp from './RegExp'
 import StrBordered from './StrBordered'
 import FileReader from './FileReader'
 import LocalStorage from './LocalStorage'
@@ -41,6 +42,11 @@ export default{
         text: 'LocalStorage',
         component: 'LocalStorage',
         labels: LocalStorage.labels
+      }, {
+        target: RegExp.domId,
+        text: 'RegularExpression',
+        component: 'RegExp',
+        labels: RegExp.labels
       }],
       checkedLabels: []
     }
@@ -64,6 +70,7 @@ export default{
     StrBordered,
     FileReader,
     LocalStorage,
+    RegExp,
     LabelBrowser, LabelNode, LabelCustom
   },
   methods: {

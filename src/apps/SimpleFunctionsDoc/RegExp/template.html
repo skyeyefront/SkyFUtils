@@ -1,0 +1,173 @@
+<div :id="style.regexp">
+    <div class="page-header">
+        <h1>Regular Expression
+            <small>
+                <label-browser></label-browser>
+                <label-node></label-node>
+            </small>
+        </h1>
+    </div>
+    <!--检测tel-->
+    <code-panel :title="true" :code-text="telCodes"
+                :run-button="true" @run-code="runTestTel">
+        <template slot="title">
+            验证tel <code>isTel(v)</code>
+        </template>
+        <div slot="code-after" class="well">
+            <div class="form-inline">
+                <div class="input-group">
+                    <div class="input-group-addon">Tel</div>
+                    <input class="form-control" type="text" placeholder="输入待验证的tel"
+                           v-model="regExp.tel">
+                </div>
+            </div>
+        </div>
+        <div slot="content-append">
+            <h4>参数</h4>
+            <options-list :list="telOptionList"></options-list>
+        </div>
+    </code-panel>
+    <!--检测email-->
+    <code-panel :title="true" :code-text="emailCodes"
+                :run-button="true" @run-code="runTestEmail">
+        <template slot="title">
+            验证email <code>isEmail(v)</code>
+        </template>
+        <div slot="code-after" class="well">
+            <div class="form-inline">
+                <div class="input-group">
+                    <div class="input-group-addon">Email</div>
+                    <input class="form-control" type="text" placeholder="输入待验证的email"
+                           v-model="regExp.email">
+                </div>
+            </div>
+        </div>
+        <div slot="content-append">
+            <h4>参数</h4>
+            <options-list :list="emailOptionList"></options-list>
+        </div>
+    </code-panel>
+    <!--检测id-->
+    <code-panel :title="true" :code-text="idCodes"
+                :run-button="true" @run-code="runTestId">
+        <template slot="title">
+            验证身份证号码 <code>isId(v)</code>
+        </template>
+        <div slot="code-after" class="well">
+            <div class="form-inline">
+                <div class="input-group">
+                    <div class="input-group-addon">Id</div>
+                    <input class="form-control" type="text" placeholder="输入待验证的身份证Id"
+                           v-model="regExp.id">
+                </div>
+            </div>
+        </div>
+        <div slot="content-append">
+            <h4>参数</h4>
+            <options-list :list="idOptionList"></options-list>
+        </div>
+    </code-panel>
+    <!--检测Ipv4-->
+    <code-panel :title="true" :code-text="ipv4Codes"
+                :run-button="true" @run-code="runTestIpv4">
+        <template slot="title">
+            验证Ipv4 <code>isIpv4(v)</code>
+        </template>
+        <div slot="code-after" class="well">
+            <div class="form-inline">
+                <div class="input-group">
+                    <div class="input-group-addon">Ip</div>
+                    <input class="form-control" type="text" placeholder="输入待验证的ip"
+                           v-model="regExp.ipv4">
+                </div>
+            </div>
+        </div>
+        <div slot="content-append">
+            <h4>参数</h4>
+            <options-list :list="ipv4OptionList"></options-list>
+        </div>
+    </code-panel>
+    <!--检测mobile-->
+    <code-panel :title="true" :code-text="mobileCodes"
+                :run-button="true" @run-code="runTestMobile">
+        <template slot="title">
+            验证mobile <code>isMobile(v)</code>
+        </template>
+        <div slot="code-after" class="well">
+            <div class="form-inline">
+                <div class="input-group">
+                    <div class="input-group-addon">Mobile</div>
+                    <input class="form-control" type="text" placeholder="输入待验证的移动电话"
+                           v-model="regExp.mobile">
+                </div>
+            </div>
+        </div>
+        <div slot="content-append">
+            <h4>参数</h4>
+            <options-list :list="mobileOptionList"></options-list>
+        </div>
+    </code-panel>
+    <!--检测md5-->
+    <code-panel :title="true" :code-text="md5Codes"
+                :run-button="true" @run-code="runTestMd5">
+        <template slot="title">
+            验证Md5 <code>isMd5(v)</code>
+        </template>
+        <div slot="code-after" class="well">
+            <div class="form-inline">
+                <div class="input-group">
+                    <div class="input-group-addon">Md5</div>
+                    <input class="form-control" type="text" placeholder="输入待验证的Md5"
+                           v-model="regExp.md5">
+                </div>
+            </div>
+        </div>
+        <div slot="content-append">
+            <h4>参数</h4>
+            <options-list :list="md5OptionList"></options-list>
+        </div>
+    </code-panel>
+    <!--检测url-->
+    <code-panel :title="true" :code-text="urlCodes"
+                :run-button="true" @run-code="runTestUrl">
+        <template slot="title">
+            验证Url <code>isUrl(v)</code>
+        </template>
+        <div slot="code-after" class="well">
+            <div class="form-inline">
+                <div class="input-group">
+                    <div class="input-group-addon">Url</div>
+                    <input class="form-control" type="text" placeholder="输入待验证的url"
+                           v-model="regExp.url">
+                </div>
+            </div>
+        </div>
+        <div slot="content-append">
+            <h4>参数</h4>
+            <options-list :list="urlOptionList"></options-list>
+        </div>
+    </code-panel>
+    <!--通用-->
+    <code-panel :title="true" :code-text="generalCodes"
+                :run-button="true" @run-code="runGeneral">
+        <template slot="title">
+            测试自定义正则表达式 <code>testRegExp(regexp, str)</code>
+        </template>
+        <div slot="code-after" class="well">
+            <div class="form-inline">
+                <div class="input-group">
+                    <div class="input-group-addon">RegExp</div>
+                    <input class="form-control" type="text" placeholder="自定义正则表达式"
+                           v-model="general.regExp">
+                    <div class="input-group-addon">String</div>
+                    <input class="form-control" type="text" placeholder="待验证字符串"
+                           v-model="general.str">
+                </div>
+            </div>
+        </div>
+        <div slot="content-append">
+            <h4>参数</h4>
+            <options-list :list="generalOptionList"></options-list>
+        </div>
+    </code-panel>
+</div>

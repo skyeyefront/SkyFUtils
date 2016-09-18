@@ -59,5 +59,12 @@
         </a>
     </div>
 </div>
-
+<div :id="style.changeLog">
+    <h2>修改记录</h2>
+    <div class="{{style[ 'subhead' ]}}">[+]新增 [-]删除 [^]升级 [#]修复</div>
+    <hr>
+    <div class="container">
+        <change-list :change-list="changeList"></change-list>
+    </div>
+</div>
 <app-footer></app-footer>

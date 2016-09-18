@@ -4,6 +4,7 @@
 import style from './style.less'
 import template from './template.html'
 import CodePanel from '../../components/CodePanel'
+import ChangeList from '../../components/ChangeList'
 import {LabelBrowser, LabelNode} from '../../components/Label'
 import AppFooter from '../../components/AppFooter'
 import {packageJson} from '../../vuex/getters'
@@ -37,7 +38,34 @@ export default {
         '  env: "node", globalInstall: false',
         '})'
       ],
-      str: ''
+      str: '',
+      changeList: [
+        {
+          version: 'v0.0.6',
+          time: '2016-09-13',
+          changeItems: [
+            {
+              content: '[#] 修复了lib install时env变量在node下的bug',
+              type: 'fix' // update | fix | add
+            }
+          ]
+        }, {
+          version: 'v0.0.4',
+          time: '2016-09-07',
+          changeItems: [
+            {
+              content: '[+] @qnpm/skyfutils发布，提供桌面通知功能和常用方法，具体如下：',
+              type: 'add'
+            }, {
+              content: '[+] Browser和Node通用方法：Banner像素字符生成器、随机颜色、随机数',
+              type: 'add'
+            }, {
+              content: '[+] Browser浏览器方法：文件读取、本地存储',
+              type: 'add'
+            }
+          ]
+        }
+      ]
     }
   },
   computed: {
@@ -62,12 +90,16 @@ export default {
     }
   },
   components: {
-    CodePanel, LabelBrowser, LabelNode, AppFooter
+    CodePanel, LabelBrowser, LabelNode, AppFooter, ChangeList
   },
   ready () {
     this.$getStartEl = window.$('#' + style.getStart)
     if (!this.$getStartEl.length) {
       this.$getStartEl = null
+    }
+    this.$getChangeLogEL = window.$('#' + style.changeLog)
+    if (!this.$getChangeLogEL.length) {
+      this.$getChangeLogEL = null
     }
   }
 }
