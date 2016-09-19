@@ -12,7 +12,7 @@ var skyFUtils = require('@qnpm/skyfutils/dist/skyfutils.js').install({ env: 'nod
  */
 function startBanner () {
   var str = skyFUtils.SkyEyeBanner(config.packageName, { notPrint: true, wordSpace: 2 })
-  process.stdout.write('\n' + str + '\nVersion:' + config.packageVersion)
+  process.stdout.write('\n' + str + '\n')
 }
 exports.startBanner = startBanner
 

@@ -61,7 +61,12 @@
 </div>
 <div :id="style.changeLog">
     <h2>修改记录</h2>
-    <div class="{{style[ 'subhead' ]}}">[+]新增 [-]删除 [^]升级 [#]修复</div>
+    <div class="{{style[ 'subhead' ]}}">
+        <span class="label label-success">[+] 新增</span>
+        <span class="label label-danger">[-] 删除</span>
+        <span class="label label-info">[^] 升级</span>
+        <span class="label label-warning">[#] 修复</span>
+    </div>
     <hr>
     <div class="container">
         <change-list :change-list="changeList"></change-list>

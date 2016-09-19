@@ -45,10 +45,10 @@ export default {
           time: '2016-09-18',
           changeItems: [
             {
-              content: '[+] 新增正则表达式匹配功能',
+              content: '新增正则表达式匹配功能',
               type: 'add' // update | fix | add
             }, {
-              content: '[+] 新增修改记录列表ChangeLog',
+              content: '新增修改记录列表ChangeLog',
               type: 'add' // update | fix | add
             }
           ]
@@ -58,22 +58,19 @@ export default {
           time: '2016-09-13',
           changeItems: [
             {
-              content: '[#] 修复了lib install时env变量在node下的bug',
+              content: '修复了lib install时env变量在node下的bug',
               type: 'fix' // update | fix | add
             }
           ]
         }, {
-          version: 'v0.0.4',
+          version: 'v0.0.1 - v0.0.4',
           time: '2016-09-07',
           changeItems: [
             {
-              content: '[+] @qnpm/skyfutils发布，提供桌面通知功能和常用方法，具体如下：',
+              content: 'Browser和Node通用方法：Banner像素字符生成器、随机颜色、随机数',
               type: 'add'
             }, {
-              content: '[+] Browser和Node通用方法：Banner像素字符生成器、随机颜色、随机数',
-              type: 'add'
-            }, {
-              content: '[+] Browser浏览器方法：文件读取、本地存储',
+              content: 'Browser浏览器方法：文件读取、本地存储、桌面通知功能',
               type: 'add'
             }
           ]

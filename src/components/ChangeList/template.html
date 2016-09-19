@@ -5,6 +5,7 @@
     </div>
     <ul class="list-group">
         <li v-for="item in change.changeItems" class="list-group-item" style="border-width:0; padding-left:0;">
+            <span class="label label-{{ typeClass(item) }}">{{ typeStr(item) }}</span>
             {{item.content}}
         </li>
     </ul>

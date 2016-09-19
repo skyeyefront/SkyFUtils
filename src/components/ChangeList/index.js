@@ -6,11 +6,6 @@ import style from './style.less'
 
 export default {
   template,
-  data () {
-    return {
-      style
-    }
-  },
   props: {
     changeList: {
       type: Array,
@@ -19,8 +14,29 @@ export default {
       }
     }
   },
+  data () {
+    return {
+      style,
+      typeClassDict: {
+        update: 'info',
+        remove: 'danger',
+        add: 'success',
+        fix: 'warning'
+      },
+      typeStrDict: {
+        update: '[^]',
+        remove: '[-]',
+        add: '[+]',
+        fix: '[#]'
+      }
+    }
+  },
   methods: {
-    runCode: function () {
+    typeClass (item) {
+      return this.typeClassDict[ item.type ] || 'default'
+    },
+    typeStr (item) {
+      return this.typeStrDict[ item.type ] || ''
     }
   }
 }
