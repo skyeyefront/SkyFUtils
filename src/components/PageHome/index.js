@@ -41,6 +41,16 @@ export default {
       str: '',
       changeList: [
         {
+          version: 'v0.1.0',
+          time: '2016-11-02',
+          changeItems: [
+            {
+              content: '修改桌面通知函数在实例化时即申请权限（之前是在执行show方法时才申请）',
+              type: 'update' // update | fix | add
+            }
+          ]
+        },
+        {
           version: 'v0.0.7',
           time: '2016-09-18',
           changeItems: [

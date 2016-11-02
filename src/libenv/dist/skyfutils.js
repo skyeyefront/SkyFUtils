@@ -1,9 +1,9 @@
 /*!
  * skyfutils
- * Version: 0.0.6
+ * Version: 0.1.0
  * Author: huangxin
  * Group: 360 SkyEye FrontEnd
- * Build Time: 2016-09-12 16:04:20
+ * Build Time: 2016-11-02 16:42:07
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -105,11 +105,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _strBordered2 = _interopRequireDefault(_strBordered);
 
+	var _regExp = __webpack_require__(13);
+
+	var _regExp2 = _interopRequireDefault(_regExp);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	/**
-	 * Created by huangxinxin on 16/8/23.
-	 */
 	exports.default = {
 	  install: function install(envConfig, modulesConfig) {
 	    if ((0, _install3.default)(envConfig, modulesConfig)) {
@@ -138,6 +139,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      components[(0, _commons.getVarName)('Banner')] = _banner2.default;
 	      components[(0, _commons.getVarName)('Random')] = _random2.default;
 	      components[(0, _commons.getVarName)('StrBordered')] = _strBordered2.default;
+	      components[(0, _commons.getVarName)('RegExp')] = _regExp2.default;
 	      _logs2.default.info('模块安装成功:', Object.keys(components));
 	      if (_env2.default.globalInstall) {
 	        if (envVar) {
@@ -152,7 +154,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  }
-	};
+	}; /**
+	    * Created by huangxinxin on 16/8/23.
+	    */
+
 	module.exports = exports['default'];
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
@@ -199,7 +204,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 		"license": "ISC",
 		"name": "@qnpm/skyfutils",
-		"version": "0.0.6",
+		"version": "0.1.0",
 		"description": "SkyFUtils 通用模块集合",
 		"keywords": [
 			"util",
@@ -548,11 +553,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    _classCallCheck(this, Notice);
 
+	    this.permission = false;
 	    this.noPermissionMessage = noPermissionMessage;
 	    this.onclick = null;
 	    this.onerror = null;
 	    this.onclose = null;
 	    this.onshow = null;
+	    this[requestPermission]();
 	    this.setEvents();
 	    this.setOptions();
 	    return this;
@@ -650,9 +657,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var onshow = _ref4$onshow === undefined ? null : _ref4$onshow;
 
 	      options = Object.assign({}, this.options, options);
-	      if (Notification.permission !== 'granted') {
-	        this[requestPermission]();
-	      } else {
+	      if (Notification.permission === 'granted') {
 	        return this[newNotification](title, options, onclick, onerror, onclose, onshow);
 	      }
 	      return null;
@@ -661,8 +666,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    key: requestPermission,
 	    value: function value() {
 	      Notification.requestPermission().then(function (permission) {
-	        if (permission !== 'granted') {
+	        if (permission === 'granted') {
+	          this.permission = true;
+	        } else {
 	          console.warn(this.noPermissionMessage);
+	          window.alert(this.noPermissionMessage);
 	        }
 	      }.bind(this));
 	      return this;
@@ -950,6 +958,62 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                      * Created by huangxinxin on 16/9/2.
 	                                      * 字符串加边框(不支持中文)
 	                                      */
+
+/***/ },
+/* 13 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var regDict = {
+	  id: /(^\d{15}$)|(^\d{17}([0-9]|X)$)/,
+	  email: /^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\.][a-z]{2,3}([\.][a-z]{2})?$/i,
+	  mobile: /^(0|86|17951)?(13[0-9]|15[012356789]|17[0678]|18[0-9]|14[57])[0-9]{8}$/,
+	  tel: /((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)/,
+	  ipv4: /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/,
+	  md5: /^[a-z0-9]{32}$/,
+	  url: /^((https|http):\/\/)?(((([0-9]|1[0-9]{2}|[1-9][0-9]|2[0-4][0-9]|25[0-5])[.]{1}){3}([0-9]|1[0-9]{2}|[1-9][0-9]|2[0-4][0-9]|25[0-5]))|([0-9a-zA-Z\u4E00-\u9FA5\uF900-\uFA2D-]+[.]{1})+[a-zA-Z-]+)(:[0-9]{1,4})?((\/?)|(\/[0-9a-zA-Z_!~*'().?:@&=+$,%#-]+)+\/?){1}/,
+	  clearSymbol: /[ |~|`|!|@|#|\$|%|\^|&|\*|\(|\)|\-|_|\+|=|\||\\|\[|\]|\{|\}|\|:|"|'|,|<|\.|>|\/|\?]/g
+	};
+
+	var regValidator = {};
+
+	regValidator.isId = function (v) {
+	  return regDict.id.test(v);
+	};
+	regValidator.isEmail = function (v) {
+	  return regDict.email.test(v);
+	};
+	regValidator.isMobile = function (v) {
+	  return regDict.mobile.test(v);
+	};
+	regValidator.isTel = function (v) {
+	  return regDict.tel.test(v);
+	};
+	regValidator.isIpv4 = function (v) {
+	  return regDict.ipv4.test(v);
+	};
+	regValidator.isMd5 = function (v) {
+	  return regDict.md5.test(v);
+	};
+	regValidator.isUrl = function (v) {
+	  return regDict.url.test(v);
+	};
+	regValidator.isClearSymbol = function (v) {
+	  return regDict.clearSymbol.test(v);
+	};
+	regValidator.testRegExp = function (exp, str) {
+	  if (exp.substring(0, 1) === '/' && exp.substring(exp.length - 1, exp.length) === '/') {
+	    exp = exp.substring(1, exp.length - 1);
+	  }
+	  return new RegExp(exp).test(str);
+	};
+
+	exports.default = regValidator;
+	module.exports = exports['default'];
 
 /***/ }
 /******/ ])

@@ -5,12 +5,14 @@ const requestPermission = Symbol('requestPermission')
 const newNotification = Symbol('newNotification')
 
 class Notice {
-  constructor ({noPermissionMessage = 'Sorry, 没有桌面通知的权限'} = {}) {
+  constructor ({ noPermissionMessage = 'Sorry, 没有桌面通知的权限' } = {}) {
+    this.permission = false
     this.noPermissionMessage = noPermissionMessage
     this.onclick = null
     this.onerror = null
     this.onclose = null
     this.onshow = null
+    this[ requestPermission ]()
     this.setEvents()
     this.setOptions()
     return this
@@ -23,7 +25,7 @@ class Notice {
    * @param onshow
    * @returns {Notice}
    */
-  setEvents ({onclick = null, onerror = null, onclose = null, onshow = null} = {}) {
+  setEvents ({ onclick = null, onerror = null, onclose = null, onshow = null } = {}) {
     this.onclick = onclick
     this.onerror = onerror
     this.onclose = onclose
@@ -43,7 +45,8 @@ class Notice {
    */
   setOptions ({
     dir = 'auto', lang = 'UTF-8',
-    body = '', tag = '', icon = '', data = '', renotify = false} = {}) {
+    body = '', tag = '', icon = '', data = '', renotify = false
+  } = {}) {
     this.options = {
       dir, lang, body, tag, icon, data, renotify
     }
@@ -59,11 +62,9 @@ class Notice {
    * @param onshow
    * @returns {*}
    */
-  show (title, options, {onclick = null, onerror = null, onclose = null, onshow = null} = {}) {
+  show (title, options, { onclick = null, onerror = null, onclose = null, onshow = null } = {}) {
     options = Object.assign({}, this.options, options)
-    if (Notification.permission !== 'granted') {
-      this[ requestPermission ]()
-    } else {
+    if (Notification.permission === 'granted') {
       return this[ newNotification ](title, options, onclick, onerror, onclose, onshow)
     }
     return null
@@ -73,8 +74,11 @@ class Notice {
     Notification
       .requestPermission()
       .then(function (permission) {
-        if (permission !== 'granted') {
+        if (permission === 'granted') {
+          this.permission = true
+        } else {
           console.warn(this.noPermissionMessage)
+          window.alert(this.noPermissionMessage)
         }
       }.bind(this))
     return this
