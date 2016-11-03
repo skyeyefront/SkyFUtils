@@ -72,8 +72,7 @@ class Notice {
 
   [requestPermission] () {
     Notification
-      .requestPermission()
-      .then(function (permission) {
+      .requestPermission(function (permission) {
         if (permission === 'granted') {
           this.permission = true
         } else {

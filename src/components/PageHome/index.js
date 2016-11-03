@@ -41,6 +41,16 @@ export default {
       str: '',
       changeList: [
         {
+          version: 'v0.1.1',
+          time: '2016-11-03',
+          changeItems: [
+            {
+              content: '修复桌面通知函数无法在Safari浏览器运行的Bug',
+              type: 'fix' // update | fix | add
+            }
+          ]
+        },
+        {
           version: 'v0.1.0',
           time: '2016-11-02',
           changeItems: [
