@@ -5,7 +5,7 @@
   },
   "license": "ISC",
   "name": "@qnpm/skyfutils",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "SkyFUtils 通用模块集合",
   "keywords": [
     "util",

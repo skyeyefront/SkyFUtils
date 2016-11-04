@@ -77,7 +77,6 @@ class Notice {
           this.permission = true
         } else {
           console.warn(this.noPermissionMessage)
-          window.alert(this.noPermissionMessage)
         }
       }.bind(this))
     return this

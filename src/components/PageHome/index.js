@@ -41,6 +41,16 @@ export default {
       str: '',
       changeList: [
         {
+          version: 'v0.1.2',
+          time: '2016-11-04',
+          changeItems: [
+            {
+              content: '移除桌面通知无权限时`alert`操作',
+              type: 'update' // update | fix | add
+            }
+          ]
+        },
+        {
           version: 'v0.1.1',
           time: '2016-11-03',
           changeItems: [
