@@ -24,7 +24,6 @@ export const codes6 = [
   '  lang: "UTF-8"',
   '  body: "这里是正文 2"',
   '  tag: "tag-1"',
-  '  icon: "http://10.16.66.42:5011/favicon.png"',
   '  data: {name: "skyeye"}',
   '  renotify: true',
   '})',

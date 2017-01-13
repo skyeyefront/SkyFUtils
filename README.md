@@ -2,8 +2,6 @@
 
 ### 安装
 * `npm install`
-* 天眼Npm源切换 `npm set registry http://10.16.66.42:5010/`
-* 天眼Npm服务 http://10.16.66.42:5011/
 
 ### 如何使用
 * dev(开发模式): `npm run dev`
@@ -12,7 +10,7 @@
 
 ### 自定义配置
 * 配置文件: `config.custom.js`
-* 配置文档: http://10.16.66.42:5011/package/@qnpm/skyfenv
+* 配置文档: https://github.com/skyeyefront/FrontEnd-Frame2
 
 ### 上线流程(请使用root权限)
 * 第一步: 将代码部署到线上环境

@@ -1,9 +1,9 @@
 /*!
  * skyfutils
- * Version: 0.1.1
+ * Version: 0.1.2
  * Author: huangxin
  * Group: 360 SkyEye FrontEnd
- * Build Time: 11/3/2016, 4:11:19 PM
+ * Build Time: 1/13/2017, 1:37:39 PM
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -203,8 +203,8 @@ return /******/ (function(modules) { // webpackBootstrap
 			"test": "echo \"Error: no test specified\" && exit 1"
 		},
 		"license": "ISC",
-		"name": "@qnpm/skyfutils",
-		"version": "0.1.1",
+		"name": "skyfutils",
+		"version": "0.1.2",
 		"description": "SkyFUtils 通用模块集合",
 		"keywords": [
 			"util",
@@ -670,7 +670,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	          this.permission = true;
 	        } else {
 	          console.warn(this.noPermissionMessage);
-	          window.alert(this.noPermissionMessage);
 	        }
 	      }.bind(this));
 	      return this;

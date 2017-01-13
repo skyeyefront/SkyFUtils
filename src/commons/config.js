@@ -7,7 +7,7 @@ let config = {
   name: 'SkyFUtils',
   minZipUrl: '/api/download/min',
   codeZipUrl: '/api/download/source',
-  qNpmUrl: 'http://10.16.66.42:5011/package/@qnpm/skyfutils',
+  qNpmUrl: 'https://www.npmjs.com/package/skyfutils',
   qNpmName: libJson.name
 }
 
