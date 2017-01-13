@@ -1,9 +1,9 @@
 /*!
  * skyfutils
- * Version: 0.1.2
+ * Version: 0.1.3
  * Author: huangxin
  * Group: 360 SkyEye FrontEnd
- * Build Time: 1/13/2017, 1:37:39 PM
+ * Build Time: 1/13/2017, 1:52:18 PM
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
@@ -204,7 +204,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		},
 		"license": "ISC",
 		"name": "skyfutils",
-		"version": "0.1.2",
+		"version": "0.1.3",
 		"description": "SkyFUtils 通用模块集合",
 		"keywords": [
 			"util",

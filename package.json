@@ -92,7 +92,7 @@
     "vuex": "0.6.3"
   },
   "name": "skyfutils",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "",
   "keywords": [
     ""
@@ -100,7 +100,7 @@
   "author": "huangxin",
   "_lib": {
     "name": "skyfutils",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "",
     "keywords": [
       ""
